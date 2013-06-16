@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>3GCOM &rsaquo; TASK</title>
+        <link rel='stylesheet' id='layout-css'  href='css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <f:loadBundle basename="localization.labels" var="lbl"/>
+        <f:loadBundle basename="localization.messages" var="msg"/>
+        <script src="default.js"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #efefef;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #FFFDEB;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <div id="container">
+
+                <ui:include src="headerInclude.xhtml"/>
+                <div style="height:110px"/> <!-- Space to strat the box--> 
+                <div class="box8">
+                    <!-- SubMenu -->
+                   
+                    <rich:toolbar height="30" itemSeparator="grid">
+                        <rich:toolbarGroup   itemClass="panelGroup " onitemclick="window.location='MyWTRList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/ressources.png"/> 
+                            <h:outputText  value="#{lbl.mywtr}"></h:outputText>
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup rendered="#{userController.user.LM}" itemClass="panelGroup" onitemclick="window.location='MyLMList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                            <h:outputText value="My Team"></h:outputText>
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup rendered="#{userController.user.HR}" itemClass=" panelGroup" onitemclick="window.location='MyHRList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                            <h:outputText value="My Employees"></h:outputText>
+
+
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup  rendered="#{userController.user.HR}" itemClass="panelGroup" onitemclick="window.location='WTRAList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/calendar-icon.png"/> 
+                            <h:outputText value="Timesheets"></h:outputText>
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup rendered="#{userController.user.HR}"  itemClass="selected panelGroup" onitemclick="window.location='dayOffList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/day-icon.png"/> 
+                            <h:outputText value="Days off"></h:outputText>
+
+                        </rich:toolbarGroup>
+                    </rich:toolbar>
+                    <!-- Formulaire de Saisie -->
+
+
+                    <rich:panel header="#{lbl.dayInfo}" style="height: 100%">
+                        <h:panelGrid columns='4' cellspacing="3" cellpadding="3" width="100%">
+
+                            <h:outputText value="#{lbl.date}" styleClass="required"/>
+                             <rich:calendar required="true" requiredMessage="#{msg.dateRequired}" value="#{contractCtl.contract.startDate}" />
+                                                      <h:outputText value="#{lbl.type}" styleClass="required" />
+                                                    <rich:select required="true" requiredMessage="#{msg.typeRequired}" defaultLabel="#{lbl.listHeader}" enableManualInput="true" value="#{contractCtl.contract.year}">
+                                <f:selectItem itemLabel="Weekend" itemValue="Weekend"/>
+                                <f:selectItem itemLabel="Religious Holidays" itemValue="Religious Holidays"/>
+                                <f:selectItem itemLabel="National Holidays" itemValue="National Holidays"/>
+                               
+                            </rich:select>
+                            
+                            <h:outputText styleClass="required" value="#{lbl.description}"/>
+                            <h:inputTextarea  required="true" requiredMessage="#{msg.descriptionRequired}" value="#{contractCtl.contract.description}" rows ="3" />
+
+                        </h:panelGrid>
+
+                        <h:panelGrid style="width:100%">
+                            <h:commandButton style="margin:10px; float:right" value="#{lbl.saveDayOff}"
+                                             action="#{taskCtl.saveTask()}" >
+
+                            </h:commandButton>
+                        </h:panelGrid>
+                    </rich:panel>
+
+                    <rich:popupPanel width="300" height="180" id="messagePanel" show="true" rendered="#{facesContext.maximumSeverity != null}" >
+                        <f:facet name="header">
+                            #{lbl.errorPop}
+                        </f:facet>
+                        <rich:messages id="erreur" ajaxRendered="true" />
+                        <br/><br/>
+
+                        <center>
+                            <a4j:commandButton  styleClass="login_submit_pwd" value="OK" onclick="#{rich:component('messagePanel')}.hide()"/>
+                        </center>               
+                    </rich:popupPanel>
+
+                </div>
+            </div>
+
+            <script>#{rich:component('tab_departement')}.collapseAllSubTables();</script>
+            <rich:jQuery selector=".stable tr" event="mouseover"
+                         query="jQuery(this).addClass('active-row')"/>
+            <rich:jQuery selector=".stable tr" event="mouseout"
+                         query="jQuery(this).removeClass('active-row')"/>
+
+        </h:form>
+
+
+
+    </h:body>
+</html>
+

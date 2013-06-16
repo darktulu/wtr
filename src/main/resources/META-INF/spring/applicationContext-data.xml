@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans classpath:META-INF/spring/schemas/spring-beans.xsd
+			http://www.springframework.org/schema/tx classpath:META-INF/spring/schemas/spring-tx.xsd
+			http://www.springframework.org/schema/data/jpa classpath:META-INF/spring/schemas/spring-jpa-1.2.xsd">
+
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" id="dataSource">
+		<property name="driverClassName" value="${database.driverClassName}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="1800000" />
+		<property name="numTestsPerEvictionRun" value="3" />
+		<property name="minEvictableIdleTimeMillis" value="1800000" />
+		<property name="validationQuery" value="SELECT 1" />
+	</bean>
+ 
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:persistenceXmlLocation="classpath*:META-INF/persistence.xml"
+		p:persistenceUnitName="default" p:dataSource-ref="dataSource"
+		p:jpaVendorAdapter-ref="hibernateVendor" />
+
+	<bean id="hibernateVendor" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
+		p:showSql="false" p:generateDdl="true" />
+
+	<!-- EntityManager Transaction manager -->
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- Transaction advice configured using annotation -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- Scanning JPA repositories -->
+	<jpa:repositories base-package="com.gcom.repos" />
+</beans>

@@ -1,0 +1,749 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/template.xhtml">  
+
+	<ui:define name="title">
+		Reporting Dashboard
+    </ui:define>
+
+	<ui:define name="header">
+		<ui:include src="/templates/headers/header.xhtml" />
+	</ui:define>
+	
+	<ui:define name="sider">
+		<ui:include src="/templates/siders/sider.xhtml" />
+	</ui:define>
+	
+	
+
+	<ui:define name="body">
+
+			
+				<h:form styleClass="form-horizontal" id="forms" >
+				
+				<p:panel style="margin: auto; width: 950px; margin-bottom : 10px;font-size:13px" header="Actions"  id="selectBlock" >
+				   <h:panelGrid columns="4" rows="1">
+				       <h:outputText value=" Project status  : " />  				        
+				        
+				        <p:selectOneMenu    value="#{projectList.currentStatus}"    widgetVar="statusSelect" panelStyle="width:10px;font-size:12px;"  style="width:100px;height:25px;">
+                                <f:selectItems itemLabel="#{status}" itemValue="#{status}" var="status"  value="#{projectList.statusList}"  />
+                                <p:ajax update="selectBlock,projectSelect"  onstart="selectBlockLoading.show()" oncomplete="selectBlockLoading.hide()" listener="#{projectList.handleStatusChange()}" /> 
+                         </p:selectOneMenu>
+                         <h:outputText value="Please select your project : " style=" margin-left : 50px;"/>  				        
+				        <p:selectOneMenu   value="#{projectView.idproject}"  id="projectSelect"  filter="true" filterMatchMode="contains" panelStyle="width:10px;font-size:12px;" >
+				                <f:selectItem itemValue="0" itemLabel="Select"/>
+                                <f:selectItems itemLabel="#{project.name}" itemValue="#{project.idproject}" var="project" value="#{projectList.myProjectList}" />
+                                <p:ajax event="change" onstart="bui.show(),buis.show()" oncomplete="bui.hide(),buis.hide()" onsuccess="nodes();"   update="pnl,pnls,dlg" />
+                         </p:selectOneMenu>
+				   </h:panelGrid>
+				</p:panel>
+				
+				
+				<p:blockUI block="selectBlock" widgetVar="selectBlockLoading">
+                 <p:graphicImage value="resources/images/loading.gif" width="50" height="50"/>  </p:blockUI>
+				
+				<p:blockUI block="pnl" widgetVar="bui">
+				 LOADING<br />  
+                 <p:graphicImage value="resources/images/loading.gif" width="50" height="50"/>  </p:blockUI>
+				
+				<p:blockUI block="pnls" widgetVar="buis">
+				 LOADING<br />  
+                 <p:graphicImage value="resources/images/loading.gif"  width="50" height="50"/>   </p:blockUI>
+                 
+                 <p:blockUI block="dlg" widgetVar="buis1">
+				 LOADING<br />  
+                 <p:graphicImage value="resources/images/loading.gif"  width="50" height="50"/>   </p:blockUI>
+				
+				
+				<p:panel style="margin: auto; width: 950px;" header="Project General Data" id="pnl" >
+				
+                             
+                              <table class="datatablehead">
+                                     <thead>
+                                        <tr><td colspan="4" style="background: #fff; font-weight : bold;" >Project Informations</td></tr>
+                                     </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td ><h:outputText value="Project Name"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.name}"/></td>
+                                                <td ><h:outputText value="LOB"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.costcenter.lob.name}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td ><h:outputText value="Customer "/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.customer.name}"/></td>
+                                                <td ><h:outputText value="Project Manager  "/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.manager}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td ><h:outputText value="Project Start Date "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText value="#{projectView.project.startDate}">
+                                                		<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                                                	</h:outputText>
+                                                </td>
+                                                <td ><h:outputText value="Project end Date  "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText value="#{projectView.project.endDate}">
+                                                		<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h:outputText value="Project duration "/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.duration}"/></td>
+                                                <td ><h:outputText value="Project Status  "/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.status}"/></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    
+                                    
+                                    <table style="margin-top : 30px;" class="datatablehead">
+                                        <thead>
+                                        <tr><td colspan="4" style="background: #fff; font-weight : bold;" >Project PL</td></tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr>
+                                                <td ><h:outputText value="Project Cost center"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.costcenter.year}"/></td>
+                                                <td ><h:outputText value="Project currency"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.currency}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td ><h:outputText value="Planned Revenue "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText value="#{projectView.project.plannedRevenue}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2"  minFractionDigits="2"/>
+                                                	</h:outputText>
+                                                </td>
+                                                <td ><h:outputText value="Planned cost "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText  value="#{projectView.project.baseLineCost}" >
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td ><h:outputText value="Planned Margin "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText styleClass="#{projectView.project.plannedMargin ge 0 ? 'blue':'red'}"
+                                                		value="#{projectView.project.plannedMargin}"/>
+                                                </td>
+                                                <td ><h:outputText value="Planned Margin %  "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText 
+                                                		styleClass="#{projectView.plannedMarginPercent ge 0 ? 'blue':'red'}" 
+                                                		rendered="#{projectView.project.plannedRevenue != 0 and projectView.project.name != null }" 
+                                                		value="#{projectView.plannedMarginPercent}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            
+                                            
+
+                                        </tbody>
+                                    </table>
+                                    
+                                    
+                                    <table style="margin-top : 30px;" class="datatablehead">
+                                        <thead>
+                                        <tr><td colspan="4" style="background: #fff; font-weight : bold;" >Project Time Line</td></tr>
+                                        </thead>
+                                         <tbody>
+                                            <tr>
+                                                <td><h:outputText value="Project effective Start Date "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText rendered="#{projectView.wareProjectOtherCosts != null}" 
+                                                		value="#{projectView.wareProjectOtherCosts.min_date}">
+                                                		<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                                                	</h:outputText>
+                                                </td>
+                                                <td ><h:outputText value="Project Last date activity  "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText	rendered="#{projectView.wareProjectOtherCosts != null}" 
+                                                		value="#{projectView.wareProjectOtherCosts.max_date}">
+                                                		<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            
+                                             <tr>
+                                                <td><h:outputText value="Project cost Start Date "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		rendered="#{projectView.projectCostStartDate != null}" 
+                                                		value="#{projectView.projectCostStartDate}">
+                                                		<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                                                	</h:outputText>
+                                                </td>
+                                                <td ><h:outputText value="Project cost end date  "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText 
+                                                		rendered="#{projectView.projectCostStartDate != null}"
+                                                		value="#{projectView.projectCostEndDate}">
+                                                		<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                     </p:panel>
+                     
+                     
+                     <p:panel style="margin: auto; width: 950px; margin-top : 20px;" id="pnls">
+                     	
+				             <f:facet name="header" >
+				                    Project Todate Finacial Status  
+				             </f:facet>
+				            
+				            
+				        <f:subview  rendered="#{projectView.project.project_type == 'Delivery'}" >
+                             
+                              <table class="datatablehead">
+                                        <thead>
+                                        <tr><td style="background: rgb(240, 240, 240); font-weight : bold; color : #000;" >Sales / Revenue Analysis</td></tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            
+                                            <tr>
+                                                <td style="background: #fff;" ><h:outputText value="Total Sales"/></td>
+                                                <td style="background: #fff; width : 450px;">
+                                                	<h:outputText value="#{projectView.projectDataStatus.totalSales}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2"/>
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Total Revenue "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText value="#{projectView.projectDataStatus.totalRevenue}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Total remaining orders "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText value="#{projectView.totalRemainingOrders}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    
+                                    
+                               <table class="datatablehead" style="margin-top : 20px;">
+                                        <thead>
+                                        <tr><td style="background: rgb(240, 240, 240) ; font-weight : bold; color : #000;" >Project Receivables</td></tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            
+                                            <tr>
+                                                <td style="background: #fff;" ><h:outputText value="Total invoiced"/></td>
+                                                <td style="background: #fff; width : 450px;">
+                                                	<h:outputText value="#{projectView.projectDataStatus.totalInvoiceHT}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Total Cash collected"/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText value="#{projectView.projectDataStatus.totalCashInHT}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Total Cash pending "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText value="#{projectView.totalCashPending}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                             </f:subview>
+							
+                                    <table class="datatablehead" style="margin-top : 20px;">
+                                        <thead>
+                                        <tr><td style="background: rgb(240, 240, 240); font-weight : bold; color : #000;" >Project Cost</td></tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            
+                                            <tr>
+                                                <td style="background: #fff;" ><h:outputText value="I-Buy Cost"/></td>
+                                                <td style="background: #fff; width : 450px;">
+                                                	<h:outputText styleClass="red" value="#{projectView.projectDataStatus.costIbuy}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="I-expenses Cost"/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText styleClass="red" value="#{projectView.projectDataStatus.costIexpenses}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Payroll cost"/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText styleClass="red" value="#{projectView.projectDataStatus.costPayroll}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            
+                                         
+                                            
+                                             <tr>
+                                                <td style="background: #fff;"><h:outputText value="Lob Cost"/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText styleClass="red" rendered="#{projectView.wareProjectOtherCosts != null}" 
+                                                		value="#{projectView.costLob}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+										<f:subview  rendered="#{projectView.project.project_type == 'Delivery'}" >
+                                             <tr>
+                                                <td style="background: #fff;"><h:outputText value="Support cost"/></td>
+                                                <td style="background: #fff;">
+													<h:outputText styleClass="red" rendered="#{projectView.wareProjectOtherCosts != null}"
+														value="#{projectView.costSupport}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+												</td>
+                                            </tr>
+                                            
+                                             <tr>
+                                                <td style="background: #fff;"><h:outputText value="Sales cost"/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText styleClass="red" rendered="#{projectView.wareProjectOtherCosts != null}" 
+                                                		value="#{projectView.costSales}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                             
+                                             </f:subview>
+                                             
+                                             <tr>
+                                                <td style="background: #fff;">
+													<h:outputText value="Finance Cost"/>
+														<p:commandLink oncomplete="dlg1.show();" style="color : blue; font-weight : bold;" update="dlg">
+															<img src="./resources/images/icon_info.png"  width="16px"  height="16px;"/>
+															<f:setPropertyActionListener  value="#{projectView.idproject}" target="#{projectFinanceDetailsView.idproject}"/>
+														</p:commandLink>
+												</td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		styleClass="red"
+                                                		rendered="#{projectView.totalFinancingCost != null}"
+                                                		value="#{projectView.totalFinancingCost}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td style="font-weight : bold;"><h:outputText value="Total Cost"/></td>
+                                                <td >
+                                                	<strong>
+                                                	<h:outputText styleClass="red" 
+                                                				value="#{projectView.totalCost}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                	</strong>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    
+                                    
+                                <f:subview  rendered="#{projectView.project.project_type == 'Delivery'}" >
+                                     <table class="datatablehead" style="margin-top : 20px;">
+                                        <thead>
+                                        <tr><td style="background: rgb(240, 240, 240) ; font-weight : bold; color : #000;" >Project Margin</td></tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            
+                                            <tr>
+                                                <td style="background: #fff;" ><h:outputText value="Total revenue"/></td>
+                                                <td style="background: #fff; width : 450px;">
+                                                	<h:outputText styleClass="blue" value="#{projectView.projectDataStatus.totalRevenue}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Total Cost"/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText styleClass="red" 
+                                                				value="#{projectView.totalCost}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Margin "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText	styleClass="#{projectView.margin ge 0 ? 'green':'red'}" 
+                                                		value="#{projectView.margin}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Margin % "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText	styleClass="#{projectView.margin ge 0 ? 'green':'red'}" 
+                                                		rendered="#{projectView.projectDataStatus.totalRevenue != 0}"
+                                                		value="#{projectView.marginPercent}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    
+                                 </f:subview>
+                                    
+                                    <table class="datatablehead" style="margin-top : 20px;">
+                                        <thead>
+                                        <tr><td style="background: rgb(240, 240, 240) ; font-weight : bold; color : #000;" >Cash Flows</td></tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            <f:subview  rendered="#{projectView.project.project_type == 'Delivery'}" >
+                                            <tr>
+                                                <td style="background: #fff;" ><h:outputText value="Total Cash in"/></td>
+                                                <td style="background: #fff; width : 450px;">
+                                                	<h:outputText 
+                                                		styleClass="blue" 
+                                                		value="#{projectView.projectDataStatus.totalCashInTTC}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            </f:subview>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Total cash out"/></td>
+                                                <td style="background: #fff;width : 450px;">
+                                                	<h:outputText
+                                                		styleClass="red"
+                                                		value="#{projectView.projectDataStatus.totalCashOutTTC}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Delta "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		styleClass="#{projectView.delta ge 0 ? 'green':'red'}" 
+                                                		value="#{projectView.delta}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #fff;">
+													<h:outputText value="Finance Cost"/>
+														<p:commandLink oncomplete="dlg1.show();" style="color : blue; font-weight : bold;" update="dlg">
+															<img src="./resources/images/icon_info.png"  width="16px"  height="16px;"/>
+															<f:setPropertyActionListener  value="#{projectView.idproject}" target="#{projectFinanceDetailsView.idproject}"/>
+														</p:commandLink>
+												</td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		rendered="#{projectView.totalFinancingCost != null}"
+                                                		value="#{projectView.totalFinancingCost}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Finance Cost % "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText 
+                                                		rendered="#{projectView.totalFinancingCost != null and projectView.totalCost != 0}"
+                                                		value="#{projectView.totalFinancingCostPercent}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    
+                                     <table class="datatablehead" style="margin-top : 20px;">
+                                        <thead>
+                                        <tr><td style="background: rgb(240, 240, 240) ; font-weight : bold; color : #000;" >General KPI</td></tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                            
+                                            <tr>
+                                                <td style="background: #fff;" ><h:outputText value="Total project efforts (Hours)"/></td>
+                                                <td style="background: #fff; width : 450px;">
+                                                	<h:outputText
+                                                		value="#{projectView.wareProjectOtherCosts.projectHours}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <f:subview  rendered="#{projectView.project.project_type == 'Delivery'}" >
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Revenue per head (Monthly)"/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		value="#{projectView.revenuePerHead}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            </f:subview>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Effort project % (LoB)"/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		rendered="#{projectView.wareProjectOtherCosts != null}" 
+                                                		value="#{projectView.effortProjectLob}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <f:subview  rendered="#{projectView.project.project_type == 'Delivery'}" >
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="Effort project % (Company) "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		rendered="#{projectView.wareProjectOtherCosts != null}"
+                                                		value="#{projectView.effortProjectCompany}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            </f:subview>
+                                            <tr>
+                                                <td style="background: #fff;"><h:outputText value="To date Cost vs Baseline cost "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		rendered="#{projectView.project.baseLineCost != 0}" 
+                                                		value="#{projectView.RCostVsBCost}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            <f:subview  rendered="#{projectView.project.project_type == 'Delivery'}" >
+                                             <tr>
+                                                <td style="background: #fff;"><h:outputText value="To date revenue vs Baseline Revenue "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		rendered="#{projectView.project.plannedRevenue != 0}" 
+                                                		value="#{projectView.RRevenueVsBRevenue}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td style="background: #fff;"><h:outputText value="Cost Improuvement % "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText rendered="#{projectView.project.plannedRevenue != 0 and projectView.project.baseLineCost != 0}"
+                                                		value="#{projectView.costImprouvement}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td style="background: #fff;"><h:outputText value="Finance Cost % "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText 
+                                                		rendered="#{projectView.totalFinancingCost != null and projectView.totalCost != 0}"
+                                                		value="#{projectView.totalFinancingCostPercent}">
+                                                		<f:convertNumber type="percent" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            
+                                             <!-- <tr>
+                                                <td style="background: #fff;"><h:outputText value="Cost Flexibilty %"/></td>
+                                                <td style="background: #fff;"><h:outputText value=""/></td>
+                                            </tr> -->
+											</f:subview>
+                                        </tbody>
+                                    </table>
+                                    
+                                    
+                                    
+                                    
+                                   
+
+                     </p:panel>
+                     
+         <p:dialog id="dlg" widgetVar="dlg1"  modal="true">
+         <f:facet name="header">
+         Project Financing Calculation
+         </f:facet>
+         
+          <table class="datatablehead" style="margin-bottom :10px;">
+
+                                        <tbody>
+                                            <tr>
+                                                <td ><h:outputText value="Project Name"/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.name}"/></td>
+                                                <td ><h:outputText value="Project Manager  "/></td>
+                                                <td style="background: #fff;"><h:outputText value="#{projectView.project.manager}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><h:outputText value="Project cost Start Date "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText 
+                                                		value="#{projectView.projectCostStartDate}">
+                                                		<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                                                	</h:outputText>
+                                                </td>
+                                                <td ><h:outputText value="Project cost end date  "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText 
+                                                		value="#{projectView.projectCostEndDate}">
+                                                		<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                            
+                                             <tr>
+                                                <td><h:outputText value="Total Cash Financing "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		styleClass="#{projectView.delta ge 0 ? 'green':'red'}" 
+                                                		value="#{projectView.delta}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                                <td ><h:outputText value="Total Finance cost  "/></td>
+                                                <td style="background: #fff;">
+                                                	<h:outputText
+                                                		styleClass="red"
+                                                		value="#{projectView.totalFinancingCost}">
+                                                		<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+                                                	</h:outputText>
+                                                </td>
+                                            </tr>
+                                           </tbody>
+                 </table>
+         
+				<p:tabView id="tabView" var="projectFinanceDetails"  value="#{projectFinanceDetailsView.projectsFinanceDetails}" >  
+  
+    				<p:tab id="financeTab" title="#{projectFinanceDetails.year}" >  
+                     <table style="background-color:#FFF;font-size:11px; min-width : 700px;" width="100%" cellpadding="1" cellspacing="1"  class="table table-bordered">
+							<tr style="background: rgb(173, 173, 173); font-weight : bold;">
+								<td style="background: #f1f1f1;">Period</td>
+								<td>Jan</td>
+								<td>Feb</td>
+								<td>Mar</td>
+								<td>Apr</td>
+								<td>May</td>
+								<td>Jun</td>
+								<td>Jul</td>
+								<td>Aug</td>
+								<td>Sep</td>
+								<td>Oct</td>
+								<td>Nov</td>
+								<td>Dec</td>
+							</tr>
+							
+							
+							<tr >
+								<td style="background: #f1f1f1;">Cash out</td>
+								<ui:repeat var="cashOut" value="#{projectFinanceDetails.cashOut}">
+    								<td>
+    									<h:outputText  rendered="#{cashOut != null}" value="#{cashOut}">
+											<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+										</h:outputText>
+    								</td>
+								</ui:repeat>
+							</tr>
+							<tr style="background: #f1f1f1;">
+								<td style="background: #f1f1f1;">Cash in</td>
+								<ui:repeat var="cashIn" value="#{projectFinanceDetails.cashIn}">
+    								<td>
+    									<h:outputText  rendered="#{cashIn != null}" value="#{cashIn}">
+											<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+										</h:outputText>
+    								</td>
+								</ui:repeat>
+							</tr>
+							<tr>
+								<td style="background: #f1f1f1;">Delta</td>
+								<ui:repeat var="delta" value="#{projectFinanceDetails.delta}">
+    								<td>
+    									<h:outputText rendered="#{delta != null}"  value="#{delta}" styleClass="#{delta ge 0 ? '':'red'}">
+											<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+										</h:outputText>
+    								</td>
+								</ui:repeat>
+							</tr>
+							<tr>
+								<td style="background: #f1f1f1;">Cumulative</td>
+								<ui:repeat var="cumulative" value="#{projectFinanceDetails.cumulative}" >
+    								<td>
+    									<h:outputText rendered="#{cumulative != null}" value="#{cumulative}" styleClass="#{cumulative ge 0 ? '':'red'}">
+											<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+										</h:outputText>
+    								</td>
+								</ui:repeat>
+							</tr>
+							
+							<tr>
+								<td style="background: #f1f1f1;">Finance Cost</td>
+								<ui:repeat var="financingCost" value="#{projectFinanceDetails.financingCost}" >
+    								<td>
+    									<strong>
+    									<h:outputText  rendered="#{financingCost != null}" value="#{financingCost}" styleClass="#{financingCost gt 0 ?'red':''}">
+											<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2" />
+										</h:outputText>
+										</strong>
+    								</td>
+								</ui:repeat>
+							</tr>
+						</table>
+                    
+                     <p:commandButton value="Hide" onclick="dlg1.hide();"></p:commandButton> 
+    				</p:tab>  
+	  			</p:tabView> 
+			</p:dialog>
+				</h:form>
+
+			
+
+
+	</ui:define>
+	<ui:define name="footer">
+		<ui:include src="/templates/footers/footer.xhtml" />
+	</ui:define>
+</ui:composition>

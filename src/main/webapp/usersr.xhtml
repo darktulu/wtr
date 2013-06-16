@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>3GCOM &rsaquo; USER MANAGEMENT</title>
+        <link rel='stylesheet' id='layout-css'  href='css/layout.css' type='text/css' media='all' />
+        <f:loadBundle basename="localization.labels" var="lbl"/>
+        <f:loadBundle basename="localization.messages" var="msg"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #efefef;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #FFFDEB;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id="container">
+                
+<ui:include src="headerInclude.xhtml"/>
+                <div style="height:110px"/> <!-- Space to strat the box--> 
+                <div class="box8">
+                    <!-- SubMenu -->
+
+                    <!-- SubMenu -->
+                   <rich:toolbar height="30" itemSeparator="grid">
+                        <rich:toolbarGroup itemClass="panelGroup   " onitemclick="window.location='companyList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/company.png"/> 
+                            <h:outputText  value="#{lbl.company}"></h:outputText> 
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup itemClass="panelGroup   " onitemclick="window.location='buList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 3px 5px " width="24" value="images/bu.png"/> 
+                            <h:outputText value="#{lbl.BU}"> </h:outputText>    
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup itemClass="panelGroup  " onitemclick="window.location='lobList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 0px 5px " width="34" value="images/lob.png"/> 
+                            <h:outputText  value="#{lbl.lob}"></h:outputText> 
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup  itemClass="panelGroup  " onitemclick="window.location='costCenterList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/costCenter.png"/> 
+                            <h:outputText value="#{lbl.costCenter}"></h:outputText>
+                            <h:outputLink></h:outputLink>
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup  itemClass="panelGroup selected " onitemclick="window.location='users.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/ressource.png"/> 
+                            <h:outputText value="#{lbl.ressource}"></h:outputText>
+                        </rich:toolbarGroup>
+                    </rich:toolbar>
+
+                    <rich:toolbar height="30" itemSeparator="grid">
+                        <rich:toolbarGroup itemClass="panelGroup " onitemclick="window.location='customerList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 3px 5px " width="24" value="images/customer.png"/> 
+                            <h:outputText value="#{lbl.customer}"> </h:outputText>    
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup itemClass="panelGroup" onitemclick="window.location='projectList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 3px 5px " width="24" value="images/project.png"/> 
+                            <h:outputText value="#{lbl.project}"> </h:outputText>    
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup itemClass="panelGroup" onitemclick="window.location='contractList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 3px 5px " width="24" value="images/contract.png"/> 
+                            <h:outputText value="#{lbl.contractCustomer}"> </h:outputText>    
+                        </rich:toolbarGroup>
+                    </rich:toolbar>
+
+                    <rich:toolbar height="30" itemSeparator="grid">
+                        <rich:toolbarGroup itemClass="panelGroup" onitemclick="window.location='supplierList.xhtml'" >
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 3px 5px " width="24" value="images/supplier.png"/> 
+                            <h:outputText value="#{lbl.supplier}"> </h:outputText>    
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup itemClass="panelGroup" onitemclick="window.location='catalogList.xhtml'" >
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 3px 5px " width="24" value="images/catalog.png"/> 
+                            <h:outputText value="#{lbl.catalog}"> </h:outputText>    
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup itemClass="panelGroup" onitemclick="window.location='contractSupplierList.xhtml'" >
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 3px 5px " width="24" value="images/contract.png"/> 
+                            <h:outputText value="#{lbl.contractSupplier}"> </h:outputText>    
+                        </rich:toolbarGroup>
+                    </rich:toolbar>
+
+
+                    <h:panelGrid style="margin: 10px 0px 10px 0px" columns="2" width="100%">
+                        <h:panelGroup style="float: left;">
+                            <h:commandLink action="newUser">
+                                <h:graphicImage value="images/newCompany.png"/>
+                            </h:commandLink>
+                        </h:panelGroup>
+                    </h:panelGrid>
+
+                    <!-- Liste des bank accounts -->
+                    <rich:panel header="User List" style="height: 100%">
+                        <rich:dataTable  id="tab_users" value="#{usersCtl.users}" var="u" styleClass="stable" style="width:100%" rows="10" rowClasses="odd-row, even-row">
+                            <f:facet name="header">
+                                <rich:columnGroup>
+                                    <rich:column rowspan="2"  >
+                                        <h:outputText value="Username"/>
+                                    </rich:column>
+                                    <rich:column  rowspan="2">
+                                        <h:outputText value="Full Name"/>
+                                    </rich:column>
+                                    <!--   <rich:column  rowspan="2">
+                                         <h:outputText value="Password"/>
+                                     </rich:column> -->
+                                    <rich:column colspan="5"   >
+                                        <h:outputText value="Tools"/>
+                                    </rich:column>
+                                    <rich:column   breakRowBefore="true">
+                                        <h:outputText value="I Admin"/>
+                                    </rich:column>
+                                    <rich:column   >
+                                        <h:outputText value="I Invoice"/>
+                                    </rich:column>
+                                    <rich:column   >
+                                        <h:outputText value="I Buy"/>
+                                    </rich:column >
+                                    <rich:column   >
+                                        <h:outputText value="I OME"/>
+                                    </rich:column >
+                                    <rich:column   >
+                                        <h:outputText value="I WTR"/>
+                                    </rich:column >
+                                    <rich:column >
+                                        Actions
+                                    </rich:column>
+                                </rich:columnGroup>
+
+                            </f:facet>
+
+                            <rich:column  >
+                                <h:outputText value="#{u.username}"/>
+                            </rich:column>
+
+                            <rich:column>
+                                <h:outputText value="#{u.firstname} #{u.lastname}"/>
+                            </rich:column>
+
+                            <!--  <rich:column>
+                                  <h:outputText value="#{u.password}"/>
+                              </rich:column> -->
+
+
+
+                            <rich:column style="width: 80px; text-align: center" >
+                                <h:outputText style="color: #282" rendered="#{u.admin eq true}" value="yes"/>  
+                                <h:outputText style="color: #811" rendered="#{u.admin eq false}" value="no"/>  
+                            </rich:column>
+                            <rich:column style="width: 80px; text-align: center" >
+                                <h:outputText style="color: #282" rendered="#{u.invoice eq true}" value="yes"/>  
+                                <h:outputText style="color: #811" rendered="#{u.invoice eq false}" value="no"/> 
+                            </rich:column>
+                            <rich:column style="width: 80px; text-align: center" >
+                                <h:outputText style="color: #282" rendered="#{u.buy eq true}" value="yes"/>  
+                                <h:outputText style="color: #811" rendered="#{u.buy eq false}" value="no"/> 
+                            </rich:column>
+                            <rich:column style="width: 80px; text-align: center" >
+                                <h:outputText style="color: #282" rendered="#{u.ome eq true}" value="yes"/>  
+                                <h:outputText style="color: #811" rendered="#{u.ome eq false}" value="no"/> 
+                            </rich:column>
+                            <rich:column style="width: 80px; text-align: center" >
+                                <h:outputText style="color: #282" rendered="#{u.wtr eq true}" value="yes"/>  
+                                <h:outputText style="color: #811" rendered="#{u.wtr eq false}" value="no"/> 
+                            </rich:column>
+                            <rich:column style="width:80px;text-align: center">
+
+                                <a4j:commandLink value="EDIT" render="editZone" onclick="#{rich:component('edit')}.show()">
+                                    <f:setPropertyActionListener target="#{usersCtl.selectedUser}" value="#{u}"/>
+                                </a4j:commandLink>
+                                &nbsp;|&nbsp;
+                                <a4j:commandLink value="DELETE" onclick="#{rich:component('delete')}.show()">
+                                    <f:setPropertyActionListener target="#{usersCtl.selectedUser}" value="#{u}"/>
+                                </a4j:commandLink>
+                            </rich:column>
+
+                            <f:facet name="footer">
+                                <rich:dataScroller/>
+                            </f:facet>
+
+                        </rich:dataTable>
+                    </rich:panel>
+
+                </div>
+            </div>
+
+
+            <rich:jQuery selector=".stable tr" event="mouseover"
+                         query="jQuery(this).addClass('active-row')"/>
+            <rich:jQuery selector=".stable tr" event="mouseout"
+                         query="jQuery(this).removeClass('active-row')"/>
+
+            <rich:popupPanel id="delete" autosized="true">
+                <f:facet name="header">
+                    Delete user
+                </f:facet>
+                Are you sure you want to delete this user?
+                <br/><br/>
+                <h:panelGrid columns="2" >
+                    <a4j:commandButton onclick="#{rich:component('delete')}.hide()" value="Cancel"/>
+                    <a4j:commandButton render="tab_users" action="#{usersCtl.delete}" oncomplete="#{rich:component('delete')}.hide()" value="Delete"/>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+        </h:form>
+
+        <rich:popupPanel id="edit" autosized="true" width="400">
+            <f:facet name="header">
+                Edit user
+            </f:facet>
+            <h:form>
+                <h:panelGrid id="editZone" style="width:100%" columns="2">
+                    <h:outputText value="username"/>
+                    <h:inputText value="#{usersCtl.selectedUser.username}"/>
+                    <h:outputText value="first name"/>
+                    <h:inputText value="#{usersCtl.selectedUser.firstname}"/>
+                    <h:outputText value="last name"/>
+                    <h:inputText value="#{usersCtl.selectedUser.lastname}" />
+                    <h:outputText value="email"/>
+                    <h:inputText value="#{usersCtl.selectedUser.email}"/>
+                    <h:outputText/><h:outputText/>
+                    <h:outputText value="modules"/>
+                    <h:selectManyCheckbox value="#{usersCtl.roles}" style="width: 100%">
+
+                        <f:selectItem itemValue="admin" itemLabel="I-Admin"/>
+                        <f:selectItem itemValue="invoice" itemLabel="I-Invoice"/>
+                        <f:selectItem itemValue="buy" itemLabel="I-Buy"/>
+                        <f:selectItem itemValue="ome" itemLabel="I-OME"/>
+                        <f:selectItem itemValue="wtr" itemLabel="I-WTR"/>
+                    </h:selectManyCheckbox>
+
+
+                </h:panelGrid>
+                <br/><br/>
+                <h:panelGrid columns="2" >
+                    <a4j:commandButton onclick="#{rich:component('edit')}.hide()" value="Cancel"/>
+                    <a4j:commandButton render="tab_users" action="#{usersCtl.update}" oncomplete="#{rich:component('edit')}.hide()" value="Save"/>
+                </h:panelGrid>
+            </h:form>
+        </rich:popupPanel>
+
+    </h:body>
+</html>
+

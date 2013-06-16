@@ -1,0 +1,349 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>3GCOM &rsaquo; DAYOFF LIST</title>
+        <link rel='stylesheet' id='layout-css'  href='css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <f:loadBundle basename="localization.labels" var="lbl"/>
+        <f:loadBundle basename="localization.messages" var="msg"/>
+        <script src="default.js"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #efefef;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #FFFDEB;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+            .s{
+                vertical-align: top;
+            }
+            .panelg td{
+                vertical-align: top;
+            }
+            .panelm td{
+                vertical-align: middle;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <div id="container">
+                <ui:include src="headerInclude.xhtml"/>
+                <!-- Space to strat the box--> 
+                <div class="box8">
+                    <!-- SubMenu -->
+
+
+                    <rich:toolbar height="30" itemSeparator="grid">
+<!--                       
+<rich:toolbarGroup   itemClass="panelGroup " onitemclick="window.location.href='MyWTRList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                            <h:outputText  value="#{lbl.myself}"></h:outputText>
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup rendered="#{userController.user.LM}" itemClass="panelGroup " onitemclick="window.location.href='MyLMList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                            <h:outputText value="#{lbl.myteam}"></h:outputText>
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup rendered="#{userController.user.HR}" itemClass="panelGroup" onitemclick="window.location.href='MyHRList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                            <h:outputText value="#{lbl.myemployees}"></h:outputText>
+
+
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup  rendered="#{userController.user.HR}" itemClass="panelGroup" onitemclick="window.location.href='WTRAList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/calendar-icon.png"/> 
+                            <h:outputText value="Timesheets"></h:outputText>
+                        </rich:toolbarGroup>
+
+                        <rich:toolbarGroup id="ff"  rendered="#{userController.user.HR}"  itemClass="selected panelGroup" onitemclick="window.location.href='dayOffList.xhtml'" >
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/day-icon.png"/> 
+                            <h:outputText value="Days off"></h:outputText>
+
+                        </rich:toolbarGroup>-->
+  <rich:toolbarGroup  itemClass="panelGroup" >
+
+                            <a4j:status id="sts">
+                                <f:facet name="start">
+                                    <h:graphicImage value="/images/loading.gif" alt="ai"/>
+                                </f:facet>
+                            </a4j:status>
+                           
+
+                        </rich:toolbarGroup>
+
+                    </rich:toolbar>
+
+                    <rich:panel  style="height: 100%">
+
+                        <h:panelGrid  styleClass="panelg" columnClasses="s" cellpadding="0" cellspacing="0" columns="2" width="100%">
+                            <rich:panelMenu expandSingle="false" styleClass="panelm" width="220px"  itemMode="client" groupMode="client"  topGroupExpandedRightIcon="chevronUp"
+                                            topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" >
+
+                                <rich:panelMenuGroup  label="#{lbl.myself}" expanded="true" >
+
+                                    <rich:panelMenuItem onclick="window.location='MyWTRList.xhtml'"  >
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                                        <h:outputText  value="#{lbl.currentTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+
+                                    <rich:panelMenuItem onclick="window.location='MyWTRLists.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                                        <h:outputText  value="#{lbl.historyTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+
+                                </rich:panelMenuGroup>
+
+                                <rich:panelMenuGroup label="#{lbl.myteam}" expanded="true"  rendered="#{userController.user.LM}" >
+                                    <h:form>
+                                        <rich:panelMenuItem  onclick="window.location='MyLMList.xhtml'">
+                                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                                            <h:outputText value="#{lbl.currentTimesheets}"></h:outputText>
+                                        </rich:panelMenuItem>
+                                        <rich:panelMenuItem  onclick="window.location='MyLMLists.xhtml'">
+                                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                                            <h:outputText value="#{lbl.historyTimesheets}"></h:outputText>
+                                        </rich:panelMenuItem>
+                                    </h:form>
+                                </rich:panelMenuGroup>
+
+                                <rich:panelMenuGroup label="#{lbl.myemployees}" expanded="true" rendered="#{userController.user.HR}" >
+                                    <rich:panelMenuItem onclick="window.location='MyHRList.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                                        <h:outputText value="#{lbl.currentTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem onclick="window.location='MyHRLists.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                                        <h:outputText value="#{lbl.historyTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+                                </rich:panelMenuGroup>
+
+                                <rich:panelMenuGroup label="Administration" expanded="true"  rendered="#{userController.user.HR}">
+                                    <rich:panelMenuItem onclick="window.location='WTRAList.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/calendar-icon.png"/> 
+                                        <h:outputText value="Timesheets"></h:outputText>
+                                    </rich:panelMenuItem> 
+                                    <rich:panelMenuItem styleClass="rf-pm-itm-sel" onclick="window.location='dayOffList.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/day-icon.png"/> 
+                                        <h:outputText value="Days off"></h:outputText>
+                                    </rich:panelMenuItem> 
+                                </rich:panelMenuGroup>
+
+                            </rich:panelMenu>
+
+
+
+
+                            <rich:panel header="#{lbl.dayoffList}" style="height:453px; vertical-align: top">
+                                <script>document.getElementsByClassName('s')[0].style.width = '230px';</script>
+                                <a4j:commandLink action="#{dayOffListCtl.getDayOffReady()}" oncomplete="#{rich:component('add')}.show()">
+                                <h:graphicImage  style="margin-bottom:20px" value="images/new.png"/>
+                            </a4j:commandLink>
+                                <f:facet name="header">
+                                    #{lbl.dayoffList}
+                                </f:facet>
+                                <rich:dataTable  onrowclick="#{rich:component('sub_departement')}.switchState();" id="dayoffList" value="#{dayOffListCtl.dayoffs}" var="d" styleClass="stable" style="width:100%" rows="100" rowClasses="odd-row, even-row">
+
+                                    <rich:column filterValue="#{dayOffListCtl.year}" filterExpression="#{fn:containsIgnoreCase(d.date, dayOffListCtl.year)  or dayOffListCtl.year == 0}" >
+                                        <f:facet name="header">
+                                            <h:outputText value="#{lbl.date}"/>
+                                            &nbsp;
+                                            <h:selectOneMenu value="#{dayOffListCtl.year}">
+                                                <f:selectItems value="#{dayOffListCtl.years}" />
+                                                <a4j:ajax status="disabled" render="dayoffList" execute="@this" event="change" />
+                                            </h:selectOneMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{d.date}"/>
+                                    </rich:column>
+
+                                    <rich:column   filterValue="#{dayOffListCtl.type}" filterExpression="#{fn:containsIgnoreCase(d.type, dayOffListCtl.type)  or dayOffListCtl.type == ''}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{lbl.type}"/>
+                                            &nbsp;
+                                            <h:selectOneMenu  value="#{dayOffListCtl.type}">
+                                                <f:selectItems value="#{dayOffListCtl.types}" />
+                                                <a4j:ajax status="disabled" render="dayoffList" execute="@this" event="change" />
+                                            </h:selectOneMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{d.type}"/>
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText value="#{lbl.description}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{d.description}"/>
+                                    </rich:column>
+
+                                    <rich:column style="text-align: center" >
+                                        <f:facet name="header">
+                                            <h:outputText value="Actions"/>
+                                        </f:facet>
+
+                                        <a4j:commandLink  value="&nbsp;" style=" " render="do2"  onclick="#{rich:component('update')}.show()" >
+                                            <h:graphicImage title="Edit" width="19px" value="/images/edit-icon.png"/>
+                                            <f:setPropertyActionListener value="#{d.iddayoff}" target="#{dayOffListCtl.idDay}"/>
+                                        </a4j:commandLink>
+
+
+                                        <a4j:commandLink  value="&nbsp;" style=" " onclick="#{rich:component('delete')}.show()" >
+                                            <br/>
+                                            <h:graphicImage title="Delete"  value="/images/delete-icon.gif"/>
+                                            <f:setPropertyActionListener value="#{d.iddayoff}" target="#{dayOffListCtl.idDay}"/>
+                                        </a4j:commandLink>
+
+                                    </rich:column> 
+
+                                    <f:facet name="footer">
+                                        <rich:dataScroller render="sts"/>
+                                    </f:facet>
+                                </rich:dataTable>
+
+
+                            </rich:panel>
+                        </h:panelGrid>
+                    </rich:panel>
+
+                </div>
+            </div>
+
+            <script>#{rich:component('tab_departement')}.collapseAllSubTables();</script>
+            <rich:jQuery selector=".stable tr" event="mouseover"
+                         query="jQuery(this).addClass('active-row')"/>
+            <rich:jQuery selector=".stable tr" event="mouseout"
+                         query="jQuery(this).removeClass('active-row')"/>
+
+
+
+
+
+
+
+            <rich:popupPanel  modal="true"  id="delete" width="300" height="150">
+                <f:facet name="header">
+                    Delete DayOff
+                </f:facet>
+                Are you sure you want to delete this dayoff?
+                <br/><br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('delete')}.hide()"/>
+                    <a4j:commandButton value="Delete" oncomplete="#{rich:component('delete')}.hide()"
+                                       action="#{dayOffListCtl.delete}" render="dayoffList">
+                    </a4j:commandButton>
+
+                </h:panelGrid>
+            </rich:popupPanel>
+
+        </h:form>
+        
+        <rich:popupPanel  modal="true"  id="add" width="600" height="200">
+            <f:facet name="header">
+                Add DayOff
+            </f:facet>
+
+            <h:form>
+                <rich:messages id="erreur" ajaxRendered="true"/>
+                <h:panelGrid id="do" columns='2' cellspacing="3" cellpadding="3" width="100%">
+
+
+
+                    <h:outputText styleClass="required" value="#{lbl.description}"/>
+                    <h:inputText value="#{dayOffListCtl.d.description}"  required="true" requiredMessage="#{msg.descriptionRequired}"  />
+                    <h:outputText styleClass="required" value="Type"/>
+                    <rich:select value="#{dayOffListCtl.d.type}"    >
+                        <f:selectItem itemValue="Weekend" itemLabel="Weekend"/>
+                        <f:selectItem itemValue="ReligiousHolidays" itemLabel="ReligiousHolidays"/>
+                        <f:selectItem itemValue="NationalHolidays" itemLabel="NationalHolidays"/>
+
+                    </rich:select>
+                    <h:outputText styleClass="required" value="Date"/>
+                    <rich:calendar datePattern="dd/MM/yyyy" value="#{dayOffListCtl.d.date}"  requiredMessage="#{msg.descriptionRequired}"  />
+
+
+                </h:panelGrid> 
+
+                <br/><br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('add')}.hide()"/>
+                    <a4j:commandButton value="Save"  oncomplete="if (#{facesContext.maximumSeverity==null}) RichFaces.$('add').hide()"
+                                       action="#{dayOffListCtl.update}" render="dayoffList">
+                    </a4j:commandButton>
+
+                </h:panelGrid>
+            </h:form> 
+        </rich:popupPanel>
+
+        <rich:popupPanel  modal="true"  id="update" width="600" height="200">
+            <f:facet name="header">
+                Edit DayOff
+            </f:facet>
+            Are you sure you want to edit this dayoff?
+            <br/><br/>
+            <h:form>
+                <rich:messages id="erreur" ajaxRendered="true"/>
+                <h:panelGrid id="do2" columns='2' cellspacing="3" cellpadding="3" width="100%">
+
+
+
+                    <h:outputText styleClass="required" value="#{lbl.description}"/>
+                    <h:inputText value="#{dayOffListCtl.d.description}"  required="true" requiredMessage="#{msg.descriptionRequired}"  />
+                    <h:outputText styleClass="required" value="Type"/>
+                    <rich:select value="#{dayOffListCtl.d.type}"    >
+                        <f:selectItem itemValue="Weekend" itemLabel="Weekend"/>
+                        <f:selectItem itemValue="ReligiousHolidays" itemLabel="ReligiousHolidays"/>
+                        <f:selectItem itemValue="NationalHolidays" itemLabel="NationalHolidays"/>
+
+                    </rich:select>
+                    <h:outputText styleClass="required" value="Date"/>
+                    <rich:calendar datePattern="dd/MM/yyyy" value="#{dayOffListCtl.d.date}"  requiredMessage="#{msg.descriptionRequired}"  />
+
+
+                </h:panelGrid> 
+
+                <br/><br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('update')}.hide()"/>
+                    <a4j:commandButton value="Save"  oncomplete="if (#{facesContext.maximumSeverity==null}) RichFaces.$('update').hide()"
+                                       action="#{dayOffListCtl.update}" render="dayoffList">
+                    </a4j:commandButton>
+
+                </h:panelGrid>
+            </h:form> 
+        </rich:popupPanel>
+
+
+    </h:body>
+</html>
+

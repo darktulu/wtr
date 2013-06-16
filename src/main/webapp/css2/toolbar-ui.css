@@ -1,0 +1,134 @@
+/* 
+    Document   : toolbar-ui
+    Created on : 30 mars 2012, 14:55:50
+    Author     : toshiba
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#tool-bar {background: #f9f9f9; 
+           padding:0 5px;
+           font-size:13px;
+           overflow:hidden; 
+}
+
+
+#tool-bar-ui-employ{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              
+              
+}
+
+#tool-bar-ui-employ:hover{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#f08520;
+              
+}
+
+#tool-bar-ui-employ:active{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#f08520;
+              
+}
+
+#tool-bar-ui-inssurance{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              
+              
+}
+
+#tool-bar-ui-inssurance:hover{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#f08520;
+              
+}
+
+#tool-bar-ui-inssurance:active{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#4babf5;
+              
+}
+
+#tool-bar-ui-warnings{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              
+              
+}
+
+#tool-bar-ui-warnings:hover{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#f08520;
+              
+}
+
+#tool-bar-ui-warnings:active{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#4babf5;
+              
+}
+
+#tool-bar-ui-leavs{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              
+              
+}
+
+#tool-bar-ui-leavs:hover{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#f08520;
+              
+}
+
+#tool-bar-ui-leavs:active{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#4babf5;
+              
+}
+
+#tool-bar-ui-account{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              
+              
+}
+
+#tool-bar-ui-account:hover{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#f08520;
+              
+}
+
+#tool-bar-ui-account:active{ float: none;
+              padding:0px 0px;
+              /*border-top:solid 2px #bad3ea; */
+              width: 100px;
+              color:#4babf5;
+              
+}

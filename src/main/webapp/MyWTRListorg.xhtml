@@ -1,0 +1,595 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>3GCOM &rsaquo; WTR LIST</title>
+        <link rel="Stylesheet" href="./css/colors.css" type="text/css"/>
+        <link rel='stylesheet' id='layout-css'  href='css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+
+        <f:loadBundle basename="localization.labels" var="lbl"/>
+        <f:loadBundle basename="localization.messages" var="msg"/>
+        <script src="default.js"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+
+            .active-row{
+                background-color: #FFFDEB;
+
+            }
+            .rf-msg-inf 
+            {
+                background-image: none !important;
+                color: darkorange!important;
+            }
+            .rf-msgs-inf {
+                background-image: none!important;
+                color: darkorange!important;
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+            .s{
+                vertical-align: top;
+            }
+            .panelg td{
+                vertical-align: top;
+            }
+            .panelm td{
+                vertical-align: middle;
+            }
+
+
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <div id="container">
+                <a4j:commandLink onclick="#{rich:component('prefs')}.show()"  style="display:inline; float:right"><img width="18px" style="margin-top:7px" src="images/settingsIcon.png"/></a4j:commandLink>
+                <ui:include src="headerInclude.xhtml"/>
+
+                <!-- Space to strat the box--> 
+                <div class="box8">
+                    <!-- SubMenu -->
+
+                    <rich:toolbar   id="kk" height="30" itemSeparator="none">
+
+
+                        <!--           <rich:toolbarGroup   itemClass="panelGroup selected " >
+                                       <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                                       <h:outputText  value="#{lbl.myself}"></h:outputText>
+                                   </rich:toolbarGroup>
+           
+                                   <rich:toolbarGroup rendered="#{userController.user.LM}" itemClass="panelGroup" onitemclick="window.location.href='MyLMList.xhtml'">
+                                       <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                                       <h:outputText value="#{lbl.myteam}"></h:outputText>
+                                   </rich:toolbarGroup>
+           
+                                   <rich:toolbarGroup rendered="#{userController.user.HR}" itemClass="panelGroup" onitemclick="window.location.href='MyHRList.xhtml'">
+                                       <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                                       <h:outputText value="#{lbl.myemployees}"></h:outputText>
+           
+           
+                                   </rich:toolbarGroup>
+                                   <rich:toolbarGroup  rendered="#{userController.user.HR}" itemClass="panelGroup" onitemclick="window.location.href='WTRAList.xhtml'">
+                                       <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/calendar-icon.png"/> 
+                                       <h:outputText value="Timesheets"></h:outputText>
+                                   </rich:toolbarGroup>
+           
+                                   <rich:toolbarGroup id="ff"  rendered="#{userController.user.HR}"  itemClass="panelGroup" onitemclick="window.location.href='dayOffList.xhtml'" >
+                                       <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/day-icon.png"/> 
+                                       <h:outputText value="Days off"></h:outputText>
+           
+                                   </rich:toolbarGroup>
+                                   <rich:toolbarGroup  itemClass="panelGroup">
+                                       <a4j:status  id="sts" >
+                                           <f:facet name="start">
+                                               <h:graphicImage value="/images/loading.gif" alt="ai"/>
+                                           </f:facet>
+                                       </a4j:status>
+           
+                                   </rich:toolbarGroup> -->
+                    </rich:toolbar>
+
+
+
+
+                    <!-- Liste des Invoices -->
+                    <rich:panel header="#{lbl.wtrList}" style="height: 100%">
+                        <f:facet name="header">
+                            #{lbl.wtrList}
+                        </f:facet>
+
+                        <h:panelGrid  styleClass="panelg" columnClasses="s" cellpadding="0" cellspacing="0" columns="2" width="100%">
+                            <rich:panelMenu  expandSingle="false" styleClass="panelm" width="220px"  itemMode="client" groupMode="client"  topGroupExpandedRightIcon="chevronUp"
+                                             topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" >
+                                <rich:panelMenuGroup  label="#{lbl.myself}" expanded="true" >
+                                    <rich:panelMenuItem styleClass="rf-pm-itm-sel"  >
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                                        <h:outputText  value="#{lbl.currentTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem onclick="window.location='MyWTRLists.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                                        <h:outputText  value="#{lbl.historyTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+                                </rich:panelMenuGroup>
+
+                                <rich:panelMenuGroup label="#{lbl.myteam}" expanded="true"  rendered="#{userController.user.LM}" >
+                                    <h:form>
+                                        <rich:panelMenuItem  onclick="window.location='MyLMList.xhtml'">
+                                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                                            <h:outputText value="#{lbl.currentTimesheets}"></h:outputText>
+                                        </rich:panelMenuItem>
+                                        <rich:panelMenuItem  onclick="window.location='MyLMLists.xhtml'">
+                                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                                            <h:outputText value="#{lbl.historyTimesheets}"></h:outputText>
+                                        </rich:panelMenuItem>
+                                    </h:form>
+                                </rich:panelMenuGroup>
+
+                                <rich:panelMenuGroup label="#{lbl.myemployees}" expanded="true" rendered="#{userController.user.HR}" >
+                                    <rich:panelMenuItem onclick="window.location='MyHRList.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                                        <h:outputText value="#{lbl.currentTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem onclick="window.location='MyHRLists.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                                        <h:outputText value="#{lbl.historyTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+                                </rich:panelMenuGroup>
+                                <rich:panelMenuGroup label="Administration" expanded="true"  rendered="#{userController.user.HR}">
+                                    <rich:panelMenuItem onclick="window.location='WTRAList.xhtml'">
+
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/calendar-icon.png"/> 
+                                        <h:outputText value="Timesheets"></h:outputText>
+                                    </rich:panelMenuItem> 
+                                    <rich:panelMenuItem onclick="window.location='dayOffList.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/day-icon.png"/> 
+                                        <h:outputText value="Days off"></h:outputText>
+                                    </rich:panelMenuItem> 
+                                </rich:panelMenuGroup>
+                            </rich:panelMenu>
+                            <rich:panel  style="height:453px; vertical-align: top">
+                                <script>document.getElementsByClassName('s')[0].style.width = '230px';</script>
+                                <h:outputText rendered="#{false}" value="dd">
+                                    <rich:tooltip id="xx" value="test" />
+                                </h:outputText>
+
+                                <rich:dataTable noDataLabel="You don't have any open timesheets." rowClass="#{tsu.status == 'Open'?'openCl ':' '}#{tsu.status == 'Reopened'?'reopenedCl ':' '}#{tsu.status == 'Closed'?'closeCl ':' '}#{tsu.status == 'Submitted'?'submittedCl ':' '}#{tsu.status == 'Rejected'?'rejectedCl ':' '}#{tsu.status == 'Pending'?'pendingCl ':' '}" onrowclick="#{rich:component('sub_departement')}.switchState();" id="UsertimesheetList" value="#{timeSheetUserListCtl.usertimesheets}" var="tsu" styleClass="stable" style="width:100%" rows="100" rowClasses="odd-row, even-row">
+
+                                    <rich:column    >
+                                        <f:facet name="header">
+                                            <h:outputText value="#{lbl.year}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{tsu.timesheet.start}">
+                                            <f:convertDateTime pattern="yyyy"/>
+                                        </h:outputText>
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText value="month"/>
+
+                                        </f:facet>
+                                        <h:outputText value="#{tsu.timesheet.start}">
+                                            <f:convertDateTime pattern="MM"/>
+                                        </h:outputText>
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText value="#{lbl.opendateEntry}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{tsu.timesheet.entryStrat}">
+
+                                        </h:outputText>
+                                    </rich:column>
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText value="#{lbl.closedateEntry}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{tsu.timesheet.entryEnd}">
+
+                                        </h:outputText>
+                                    </rich:column>
+
+
+                                    <rich:column  >
+                                        <f:facet name="header">
+                                            <h:outputText value="#{lbl.dateEntry}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{tsu.entryDate}"/>
+                                    </rich:column>
+
+                                    <rich:column  filterValue="#{timeSheetUserListCtl.status}" filterExpression="#{not fn:containsIgnoreCase(tsu.status, 'Approuved')}">
+                                        <f:facet name="header">  
+                                            <h:outputText value="#{lbl.status}"/>  
+                                        </f:facet>
+
+                                        <h:outputText 
+                                            value="#{tsu.status}" >
+                                        </h:outputText> 
+                                    </rich:column>
+
+                                    <rich:column  style="text-align: center; width:90px" >
+                                        <f:facet name="header">
+                                            <h:outputText value="Actions"/>
+                                        </f:facet>
+
+                                        <a4j:commandLink  rendered="#{ tsu.status == 'Open'  }"
+                                                          style=" " value="&nbsp;"
+                                                          onclick="#{rich:component('preRegisterWork')}.show()" render="preRegisterZone">
+                                            <h:graphicImage title="Register My Work" width="19px" value="/images/addPayment-icon.png"/>
+                                            <f:setPropertyActionListener value="#{tsu}" target="#{timeSheetUserListCtl.idTimesheet}"/>
+                                        </a4j:commandLink>
+
+                                        <a4j:commandLink  rendered="#{ tsu.status == 'Rejected' or tsu.status=='Reopened'}"
+                                                          style=" " value="&nbsp;" 
+                                                          onclick="#{rich:component('preRegisterWork')}.show()" render="preRegisterZone">
+                                            <h:graphicImage title="Register My Work" width="19px" value="/images/addPayment-icon.png"/>
+                                            <f:setPropertyActionListener value="#{tsu}" target="#{timeSheetUserListCtl.idTimesheet}"/>
+                                        </a4j:commandLink>
+
+                                        <a4j:commandLink   rendered="#{ tsu.status == 'Submitted' }" styleClass="btn" oncomplete="#{rich:component('registerWorkV')}.show()" render="registerWorkZone1V registerWorkZone2V" action="#{timeSheetUserListCtl.loadAllTasks()}" value="" >
+                                            <h:graphicImage title="View" value="/images/view-icon.png"/>
+                                            <f:setPropertyActionListener value="#{tsu}" target="#{timeSheetUserListCtl.idTimesheet}"/>
+                                        </a4j:commandLink> 
+
+
+                                    </rich:column>
+
+
+
+                                    <f:facet name="footer">
+                                        <rich:dataScroller render="sts"/>
+                                    </f:facet>
+                                </rich:dataTable>
+                            </rich:panel>
+                        </h:panelGrid>
+
+                    </rich:panel>
+
+                    <rich:jQuery selector=".stable tr" event="mouseover"
+                                 query="jQuery(this).addClass('active-row')"/>
+                    <rich:jQuery selector=".stable tr" event="mouseout"
+                                 query="jQuery(this).removeClass('active-row')"/>
+
+                </div>
+            </div>
+        </h:form>
+
+
+        <rich:popupPanel  id="registerWork" width="1050"  maxHeight="600" minHeight="600">
+            <f:facet name="header">
+                Timesheet
+            </f:facet>
+
+            <rich:messages ajaxRendered="true" id="registerErrors"/>
+
+            <h:form id="registerForm" >
+                <a4j:outputPanel  layout="block"   >
+                    <h:panelGrid id="registerWorkZone1"  columns="4" width="500px">
+                        <h:outputText style="font-weight:bold" value="Start Date" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.start}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="End Date" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.end}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="Entry Start" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.entryStrat}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="Entry End" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.entryEnd}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText rendered="#{timeSheetUserListCtl.idTimesheet.status == 'Rejected'}" style="color:red; font-weight: bold"  value="Your timesheet has been rejected. The reasons are:"/>
+                        <h:outputText rendered="#{timeSheetUserListCtl.idTimesheet.status == 'Rejected'}"   value=""/>
+                        <h:outputText rendered="#{timeSheetUserListCtl.idTimesheet.status == 'Rejected'}"   value=""/>
+                        <h:outputText rendered="#{timeSheetUserListCtl.idTimesheet.status == 'Rejected'}"   value=""/>
+                        <h:outputText rendered="#{timeSheetUserListCtl.idTimesheet.status == 'Rejected' or timeSheetUserListCtl.idTimesheet.status == 'Reopened'}" style="color:red" value="#{timeSheetUserListCtl.idTimesheet.motif}"/>
+                    </h:panelGrid>
+                    <br/><br/>
+                    <center>
+
+
+
+                        <h:panelGrid  id="registerWorkZone2" columns="2" width="600px">
+                            <rich:dataTable keepSaved="true" iterationStatusVar="stas"   value="#{timeSheetUserListCtl.usertasks}" var="task">
+                                <rich:column width="100px">
+                                    <f:facet name="header">
+                                        Project | Task
+                                    </f:facet>
+                                    <h:outputText style="font-weight:bold" value="#{task.project.name}" />
+                                    <br/>
+                                    <h:outputText value="#{task.name}" />
+                                </rich:column>
+                                <c:forEach varStatus="st" var="d" items="#{timeSheetUserListCtl.dates}" >
+
+
+                                    <rich:column id="col#{st.index}"  rendered="#{!timeSheetUserListCtl.isDayOff(d)}">
+
+
+                                        <f:facet name="header">
+                                            <h:outputText value="#{d}" >
+                                                <f:convertDateTime pattern="dd"/>    
+                                            </h:outputText>
+                                        </f:facet>
+                                        <h:form>
+                                            <h:inputText onkeypress="javascript:formatDecimale(this.value,event);" onblur="#{rich:element('hiddenShit')}.value+='#{task.idtask},#{st.index}:'+this.value+';'"   id="input-#{task.idtask}-#{st.index}" value="#{timeSheetUserListCtl.values[stas.index][st.index]}" style="width:16px"/>    
+
+                                        </h:form>
+                                    </rich:column>
+                                </c:forEach>
+                            </rich:dataTable>
+                        </h:panelGrid>
+                    </center>
+                    <br/><br/>
+                    <h:panelGrid columns="2" width="100%" >
+                        <h:panelGroup layout="block" style="float:left; width: 260px">
+
+
+                            <a4j:commandButton style="width: 120px" value="Close" onclick="#{rich:component('registerWork')}.hide()">
+
+                            </a4j:commandButton>
+                            &nbsp;&nbsp;
+                            <a4j:commandButton oncomplete="if (#{facesContext.maximumSeverity==null}) {RichFaces.$('registerWork').hide(); }" action="#{timeSheetUserListCtl.saveTimesheet()}"  style="float:right; color: #282; width: 120px" value="Save" >
+
+                            </a4j:commandButton>
+                        </h:panelGroup>
+                        <a4j:commandButton oncomplete="if (#{facesContext.maximumSeverity==null}) {location.reload(true); RichFaces.$('registerWork').hide(); }" action="#{timeSheetUserListCtl.submitTimesheet}"  style="float:right; color: #811; width: 120px" value="Submit Timesheet" >
+
+                        </a4j:commandButton>
+                    </h:panelGrid>
+                    <h:form>
+                        <h:inputText style="display:none" value="#{timeSheetUserListCtl.valuesToParse}" id="hiddenShit"/>
+
+                    </h:form>
+                </a4j:outputPanel>
+            </h:form>
+        </rich:popupPanel>
+
+
+        <rich:popupPanel id="preRegisterWork" autosized="true">
+            <f:facet name="header">
+                Project to register 
+            </f:facet>
+            <h:form>
+                <h:panelGrid  id="preRegisterZone" columns="1" width="600px">
+                    Please choose the projects you want to register work for:
+                    <br/><br/>
+
+                    <h:selectManyCheckbox layout="pageDirection" value="#{timeSheetUserListCtl.projectsToShow}">
+                        <f:selectItems  value="#{timeSheetUserListCtl.userProjects}" />
+                    </h:selectManyCheckbox>
+                </h:panelGrid>
+                <h:panelGrid columns="2" width="20%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('preRegisterWork')}.hide()"/>
+                    <a4j:commandButton status="sts2" value="Next" onclick="#{rich:component('preRegisterWork')}.hide(); #{rich:component('holdOn')}.show();" oncomplete="#{rich:component('holdOn')}.hide(); #{rich:component('registerWork')}.show();" render="registerWorkZone1 registerWorkZone2">
+
+                    </a4j:commandButton>
+                </h:panelGrid>
+            </h:form>
+        </rich:popupPanel>
+
+        <rich:popupPanel id="holdOn" autosized="true" width="">
+            <f:facet name="header">
+                Chargement...
+            </f:facet>
+            <center>
+                <h:panelGrid  id="pleasewait" width="600px">
+                    Chargement....
+                    <h:graphicImage value="/images/loading.gif" alt="ai"/>
+                </h:panelGrid>
+            </center>
+        </rich:popupPanel>
+
+
+
+        <rich:popupPanel id="taskInfo" autosized="true">
+            <f:facet name="header">
+                Add work
+            </f:facet>
+            <h:form  >
+                <rich:panel id="taskZone">
+                    <h:panelGrid  columns="4" width="600px">
+                        <h:outputText style="font-weight:bold" value="Project" />
+                        <h:outputText value="#{timeSheetUserListCtl.selectedTask.project.name}"/>
+                        <h:outputText style="font-weight:bold" value="Task" />
+                        <h:outputText value="#{timeSheetUserListCtl.selectedTask.name}" />
+                        <h:outputText style="font-weight:bold" value="Date" />
+                        <h:outputText value="#{timeSheetUserListCtl.selectedDate}" >
+                            <f:convertDateTime dateStyle="short"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="Timesheet" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.statys}" />
+                    </h:panelGrid>
+                    <br/><br/>
+                    <h:panelGrid  columns="2" width="600px">
+                        <h:outputText style="font-weight:bold" value="Percentage" />
+                        <h:inputText value="#{timeSheetUserListCtl.time}" />
+                        <h:outputText style="font-weight:bold" value="Description" />
+                        <h:inputText value="#{timeSheetUserListCtl.other}" />
+                    </h:panelGrid>
+                    <br/><br/>
+                    <h:panelGrid columns="2" width="50%">
+                        <a4j:commandButton value="Cancel" onclick="#{rich:component('taskInfo')}.hide()"/>
+                        <a4j:commandButton value="Save" action="#{timeSheetUserListCtl.addWork}" oncomplete="#{rich:component('taskInfo')}.hide();" render="
+                                           Zone2">
+
+                        </a4j:commandButton>
+                    </h:panelGrid>
+                </rich:panel>
+            </h:form>
+        </rich:popupPanel>
+
+        <rich:popupPanel  id="registerWorkV" width="1000" autosized="true">
+            <f:facet name="header">
+                Timesheet
+            </f:facet>
+
+            <rich:messages ajaxRendered="true" id="registerErrorss"/>
+
+
+            <h:form id="registerFormV" >
+                <a4j:outputPanel  layout="block"   >
+                    
+                  
+                    
+                    <h:panelGrid id="registerWorkZone1V"  columns="1" width="500px">
+                        
+                        <h:panelGrid   columns="4" width="500px">
+                        <h:outputText style="font-weight:bold" value="Submited" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.start}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="End Date" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.end}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="Entry Start" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.entryStrat}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="Entry End" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.entryEnd}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                    </h:panelGrid>
+                        
+                         <h:panelGrid   columns="4" width="500px">
+                        <h:outputText style="font-weight:bold" value="Start Date" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.start}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="End Date" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.end}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="Entry Start" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.entryStrat}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        <h:outputText style="font-weight:bold" value="Entry End" />
+                        <h:outputText value="#{timeSheetUserListCtl.idTimesheet.timesheet.entryEnd}" >
+                            <f:convertDateTime pattern="dd/MM"/>
+                        </h:outputText>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <br/><br/>
+                    <center>
+
+
+
+                        <h:panelGrid  id="registerWorkZone2V" columns="2" width="600px">
+                            <rich:dataTable keepSaved="true" iterationStatusVar="stas"   value="#{timeSheetUserListCtl.usertasks}" var="task">
+                                <rich:column width="100px">
+                                    <f:facet name="header">
+                                        Project | Task
+                                    </f:facet>
+                                    <h:outputText style="font-weight:bold" value="#{task.project.name}" />
+                                    <br/>
+                                    <h:outputText value="#{task.name}" />
+                                </rich:column>
+                                <c:forEach varStatus="st" var="d" items="#{timeSheetUserListCtl.dates}" >
+
+
+                                    <rich:column id="col#{st.index}"  rendered="#{!timeSheetUserListCtl.isDayOff(d)}">
+
+
+                                        <f:facet name="header">
+                                            <h:outputText value="#{d}" >
+                                                <f:convertDateTime pattern="dd"/>    
+                                            </h:outputText>
+                                        </f:facet>
+                                        <h:form>
+                                            <h:outputText  onblur="#{rich:element('hiddenShit')}.value+='#{task.idtask},#{st.index}:'+this.value+';'"   id="input-#{task.idtask}-#{st.index}" value="#{timeSheetUserListCtl.values[stas.index][st.index]}" style="width:16px"/>    
+
+                                        </h:form>
+                                    </rich:column>
+                                </c:forEach>
+                            </rich:dataTable>
+                        </h:panelGrid>
+                    </center>
+                    <br/><br/>
+                    <h:panelGrid columns="2" width="100%" >
+                        <h:panelGroup style="float:left">
+
+
+                            <a4j:commandButton style="width: 120px" value="Close" onclick="#{rich:element('hiddenShit')}.value=''; #{rich:component('registerWorkV')}.hide()">
+
+                            </a4j:commandButton>
+
+                        </h:panelGroup>
+
+                    </h:panelGrid>
+                    <h:form>
+                        <h:inputText style="display:none" value="#{timeSheetUserListCtl.valuesToParse}" id="hiddenShit"/>
+
+                    </h:form>
+                </a4j:outputPanel>
+            </h:form>
+        </rich:popupPanel>
+
+        <rich:popupPanel  modal="true"  id="prefs" autosized="true">
+            <f:facet name="header">
+                Change password
+            </f:facet>
+            <h:form>
+                <a4j:outputPanel>
+                    <h:panelGrid columns="2" width="100%">
+
+                        <h:outputText value="Old password"/>
+                        <h:inputSecret value="#{userCtl.oldpass}"/>
+                        <h:outputText /><h:outputText />
+                        <h:outputText value="New password"/>
+                        <h:inputSecret value="#{userCtl.newpass1}" id="sec1"/>
+                        <h:outputText  value="Repeat password">
+
+                        </h:outputText>
+                        <h:inputSecret value="#{userCtl.newpass}" id="sec2">
+                        </h:inputSecret>
+                    </h:panelGrid>
+                </a4j:outputPanel>
+                <br/><br/>
+                <h:panelGrid columns="2" width="50%">
+                    <a4j:commandButton value="Cancel" onclick="#{rich:component('prefs')}.hide()"/>
+                    <a4j:commandButton value="Save" 
+                                       oncomplete="#{rich:component('prefs')}.hide()"
+                                       action="#{userCtl.savePassword}">
+                    </a4j:commandButton>
+
+                </h:panelGrid>
+            </h:form>
+        </rich:popupPanel>
+
+
+
+    </h:body>
+
+</html>
+

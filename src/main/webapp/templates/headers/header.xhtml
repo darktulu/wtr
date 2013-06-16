@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+        
+        <h:form>
+        
+		   <h:graphicImage value="/resources/images/3g_com_white_1.gif" styleClass="pull-left" width="70" height="50" alt="logo" />
+		   <a class="brand pull-left" href="./MyWTRList.html" style="color : #fff; font-size : 25px;">I-Report</a>
+	
+       
+		<h:panelGrid columns="2" rows="1" style="float : right;">	
+				 <h:panelGrid rows="2"   style="color : #fff;">
+						<h:outputText value="Welcome, #{userProfile.profile.name}  #{userProfile.profile.surname}" />
+						<h:outputText value="#{sessionBean.logDate()}" style="margin-top: 4px;" />
+				</h:panelGrid>
+				<h:graphicImage value="#{userProfile.profile.idPhoto}" style="float: right; width: 60px; height: 40px;" alt="avatar" />
+        </h:panelGrid>
+        
+        	<div style="width:170px; height: 20px; float: right; margin-right: 20px; background: url(../images/bann.png)   no-repeat; ">
+
+			<table style="margin : auto;">
+				<tbody>
+					<tr>
+						<td width="4px" />
+						<td><a href="#"><div id="help" /></a></td>
+						<td width="4px" />
+						<td><a href="mailto:MyHr-support@3gcom-int.com"><div id="mail" /></a></td>
+						<td width="4px" />
+						<td><a href="MyWTRList.xhtml"><div id="home" /></a></td>
+						<td width="4px" />
+						<td><p:commandLink onclick=""><div id="passw" /></p:commandLink></td>
+						<td width="4px" />
+						<td><h:commandLink action="#{loginBean.doLogout}" ><span id="look" title="Disconnect" /></h:commandLink></td>
+					</tr>
+				</tbody>
+			</table>
+        
+        	</div>
+        	
+        	
+    </h:form>
+    
+	
+</ui:composition>

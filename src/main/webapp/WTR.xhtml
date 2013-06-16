@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>3GCOM &rsaquo; WTR</title>
+        <link rel='stylesheet' id='layout-css'  href='css/layout.css' type='text/css' media='all' />
+        <link rel="Stylesheet" href="./css/only.css" type="text/css"/>
+        <link rel="Stylesheet" href="./css/colors.css" type="text/css"/>
+        <f:loadBundle basename="localization.labels" var="lbl"/>
+        <f:loadBundle basename="localization.messages" var="msg"/>
+        <script src="default.js"/>
+        <style> 
+            .barsearch{
+                height: 20px;
+            }
+            .even-row {
+                background-color: #FCFFFE;
+                cursor: pointer;
+            }
+            .odd-row {
+                background-color: #efefef;
+                cursor: pointer;
+            }
+            .active-row{
+                background-color: #FFFDEB;
+
+            }
+            .top{
+                vertical-align: top;
+            }
+            .default-pointer{
+                background: red;
+            }
+            .buttonImg{
+                margin: 3px 8px 0px 8px; 
+                cursor:pointer;
+            }
+            .rf-p-hdr{
+                text-align: center;
+                font-size: 1em !important;
+            }
+            .s{
+                vertical-align: top;
+            }
+            .panelg td{
+                vertical-align: top;
+            }
+            .panelm td{
+                vertical-align: middle;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id="container">
+                <ui:include src="headerInclude.xhtml"/>
+                
+                <div class="box8">
+                    <!-- SubMenu -->
+
+
+
+
+<!--
+
+-->                     <rich:toolbar height="30" itemSeparator="grid"><!--
+                        <rich:toolbarGroup   itemClass="panelGroup " onitemclick="window.location='MyWTRList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                            <h:outputText  value="#{lbl.mywtr}"></h:outputText>
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup rendered="#{userController.user.LM}" itemClass="panelGroup" onitemclick="window.location='MyLMList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                            <h:outputText value="My Team"></h:outputText>
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup rendered="#{userController.user.HR}" itemClass=" panelGroup" onitemclick="window.location='MyHRList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                            <h:outputText value="My Employees"></h:outputText>
+
+
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup  rendered="#{userController.user.HR}" itemClass="selected panelGroup" onitemclick="window.location='WTRAList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/calendar-icon.png"/> 
+                            <h:outputText value="Timesheets"></h:outputText>
+                        </rich:toolbarGroup>
+                        <rich:toolbarGroup rendered="#{userController.user.HR}"  itemClass="panelGroup" onitemclick="window.location='dayOffList.xhtml'">
+                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/day-icon.png"/> 
+                            <h:outputText value="Days off"></h:outputText>
+
+                        </rich:toolbarGroup>-->
+
+
+
+                    </rich:toolbar>
+                    <rich:panel header="#{lbl.timeSheetInfo}" style="height:463px; vertical-align: top">
+                        <h:inputHidden  value="#{contractCtl.idContractToEdit}" />
+                        <f:facet name="header">
+                            #{lbl.timeSheetInfo}
+                        </f:facet>
+                     <h:panelGrid  styleClass="panelg" columnClasses="s" cellpadding="0" cellspacing="0" columns="2" width="100%">
+                         
+                            <rich:panelMenu expandSingle="false" styleClass="panelm" width="220px"  itemMode="client" groupMode="client"  topGroupExpandedRightIcon="chevronUp"
+                                            topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="disc" >
+                                <rich:panelMenuGroup  label="#{lbl.myself}" expanded="true" >
+
+                                    <rich:panelMenuItem onclick="window.location='MyWTRList.xhtml'"  >
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                                        <h:outputText  value="#{lbl.currentTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+
+                                    <rich:panelMenuItem onclick="window.location='MyWTRLists.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/time-icon.png"/> 
+                                        <h:outputText  value="#{lbl.historyTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+
+                                </rich:panelMenuGroup>
+
+                                <rich:panelMenuGroup label="#{lbl.myteam}" expanded="true"  rendered="#{userController.user.LM}" >
+                                    <h:form>
+                                        <rich:panelMenuItem  onclick="window.location='MyLMList.xhtml'">
+                                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                                            <h:outputText value="#{lbl.currentTimesheets}"></h:outputText>
+                                        </rich:panelMenuItem>
+                                        <rich:panelMenuItem  onclick="window.location='MyLMLists.xhtml'">
+                                            <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/team-icon.png"/> 
+                                            <h:outputText value="#{lbl.historyTimesheets}"></h:outputText>
+                                        </rich:panelMenuItem>
+                                    </h:form>
+                                </rich:panelMenuGroup>
+
+                                <rich:panelMenuGroup label="#{lbl.myemployees}" expanded="true" rendered="#{userController.user.HR}" >
+                                    <rich:panelMenuItem onclick="window.location='MyHRList.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                                        <h:outputText value="#{lbl.currentTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+                                    <rich:panelMenuItem styleClass="rf-pm-itm-sel" onclick="window.location='MyHRLists.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="32" value="images/emp-icon.png"/> 
+                                        <h:outputText value="#{lbl.historyTimesheets}"></h:outputText>
+                                    </rich:panelMenuItem>
+                                </rich:panelMenuGroup>
+
+                                <rich:panelMenuGroup label="Administration" expanded="true"  rendered="#{userController.user.HR}">
+                                    <rich:panelMenuItem onclick="window.location='WTRAList.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/calendar-icon.png"/> 
+                                        <h:outputText value="Timesheets"></h:outputText>
+                                    </rich:panelMenuItem> 
+                                    <rich:panelMenuItem onclick="window.location='dayOffList.xhtml'">
+                                        <h:graphicImage style="vertical-align: middle; margin: 5px 5px 5px 5px " width="30" value="images/day-icon.png"/> 
+                                        <h:outputText value="Days off"></h:outputText>
+                                    </rich:panelMenuItem> 
+                                </rich:panelMenuGroup>
+
+                            </rich:panelMenu>
+
+                     
+<rich:panel>
+                        <h:panelGrid columns='4' cellspacing="3" cellpadding="3" width="100%">
+
+                            <h:outputText styleClass="required" value="#{lbl.startDate}"/>
+                            <rich:calendar required="true" requiredMessage="#{msg.startDateRequired}" value="#{timesheetCtl.start}" />
+
+                            <h:outputText styleClass="required" value="#{lbl.endDate}"/>
+                            <rich:calendar required="true" requiredMessage="#{msg.endDateRequired}" value="#{timesheetCtl.end}" />
+
+                            <h:outputText styleClass="required" value="#{lbl.opendateEntry}"/>
+                            <rich:calendar required="true" requiredMessage="#{msg.opentDateRequired}" value="#{timesheetCtl.entryStrat}" />
+
+                            <h:outputText styleClass="required" value="#{lbl.closedateEntry}"/>
+                            <rich:calendar required="true" requiredMessage="#{msg.closeDateRequired}" value="#{timesheetCtl.entryEnd}" />
+
+
+                        </h:panelGrid>
+    <script>document.getElementsByClassName('s')[0].style.width = '230px';</script>
+                     <!-- Formulaire de Saisie   <br/><br/>
+                        Plz Check off days
+                        <br/><br/>
+                        <h:selectManyCheckbox value="#{userCtl.roles}" style="width: 50%">
+                            <f:selectItem  itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem  itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="10" itemLabel="10"/>
+                        </h:selectManyCheckbox>
+                        <h:selectManyCheckbox value="#{userCtl.roles}" style="width: 50%">
+                            <f:selectItem  itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem  itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="20" itemLabel="20"/>
+                        </h:selectManyCheckbox>
+                        <h:selectManyCheckbox value="#{userCtl.roles}" style="width: 50%">
+                            <f:selectItem  itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem  itemValue="1" itemLabel="1"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="2" itemLabel="2"/>
+                            <f:selectItem itemValue="30" itemLabel="30"/>
+
+                        </h:selectManyCheckbox>  
+                        <h:selectManyCheckbox value="#{userCtl.roles}" style="width: 50%">
+                            <f:selectItem  itemValue="31" itemLabel="31"/>
+                        </h:selectManyCheckbox> -->  
+                        <h:panelGrid style="width:100%">
+                            <h:commandButton style="margin:10px; float:right" value="#{lbl.saveWTR}"
+                                             action="#{timesheetCtl.saveAffectation()}"  >
+                            </h:commandButton>
+
+                        </h:panelGrid>
+                        </rich:panel>
+                        </h:panelGrid>
+                    </rich:panel>
+                    
+                    
+                    
+                    
+
+                    <rich:popupPanel width="300" height="180" id="messagePanel" show="true" rendered="#{facesContext.maximumSeverity != null}" >
+                        <f:facet name="header">
+                            #{lbl.errorPop}
+                        </f:facet>
+                        <rich:messages id="erreur" ajaxRendered="true" />
+                        <br/><br/>
+                        <center>
+                            <a4j:commandButton styleClass="login_submit_pwd" value="OK" onclick="#{rich:component('messagePanel')}.hide()"/>
+                        </center>               
+                    </rich:popupPanel>
+
+                </div>
+            </div>
+
+            <script>#{rich:component('tab_departement')}.collapseAllSubTables();</script>
+            <rich:jQuery selector=".stable tr" event="mouseover"
+                         query="jQuery(this).addClass('active-row')"/>
+            <rich:jQuery selector=".stable tr" event="mouseout"
+                         query="jQuery(this).removeClass('active-row')"/>
+
+        </h:form>
+
+
+
+    </h:body>
+</html>
+

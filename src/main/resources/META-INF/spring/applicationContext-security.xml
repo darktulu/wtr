@@ -1,0 +1,113 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+      http://www.springframework.org/schema/beans classpath:META-INF/spring/schemas/spring-beans.xsd
+      http://www.springframework.org/schema/security classpath:META-INF/spring/schemas/spring-security.xsd
+      http://www.springframework.org/schema/context classpath:META-INF/spring/schemas/spring-context.xsd">
+
+	<sec:global-method-security secured-annotations="enabled" authentication-manager-ref="authenticationManager" />
+
+
+	<sec:http auto-config="true" access-denied-page="/faces/accessDenied.xhtml"> 
+        <sec:intercept-url pattern="/faces/index.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
+        <sec:intercept-url pattern="/javax.faces.resource/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <sec:intercept-url pattern="/images/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <sec:intercept-url pattern="/faces/images/*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <sec:intercept-url pattern="/faces/css/*" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
+        <sec:intercept-url pattern="/css/*" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
+         <!-- PAGE RESTRICTIONS -->
+
+        <sec:intercept-url pattern="/faces/index.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <sec:intercept-url pattern="/faces/accessDenied.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+       <!--  <sec:intercept-url pattern="/faces/accueil.xhtml" access="ROLE_ADMIN, ROLE_USER, ROLE_HEAD"/>-->
+       
+       
+         <!-- PAGE RESTRICTIONS I Admin Module -->
+       <sec:intercept-url pattern="/faces/users.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/user.xhtml" access="ROLE_ADMIN"/>
+        
+        
+        <sec:intercept-url pattern="/faces/bu.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/buView.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/buList.xhtml" access="ROLE_ADMIN"/>
+        
+        <sec:intercept-url pattern="/faces/company.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/companyList.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/companyView.xhtml" access="ROLE_ADMIN"/>
+        
+        <sec:intercept-url pattern="/faces/contract.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/contractList.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/contractView.xhtml" access="ROLE_ADMIN"/>
+        
+        <sec:intercept-url pattern="/faces/costCenter.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/costCenterList.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/costCenterView.xhtml" access="ROLE_ADMIN"/>
+        
+        <sec:intercept-url pattern="/faces/customer.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/customerView.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/customerList.xhtml" access="ROLE_ADMIN"/>
+        
+       
+        <sec:intercept-url pattern="/faces/lob.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/lobList.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/lobView.xhtml" access="ROLE_ADMIN"/>
+ 
+       
+        <sec:intercept-url pattern="/faces/project.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/projectView.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/projectList.xhtml" access="ROLE_ADMIN"/>
+        <sec:intercept-url pattern="/faces/projectEdit.xhtml" access="ROLE_ADMIN"/>
+        
+         <sec:intercept-url pattern="/faces/WTRAList.xhtml"  access="ROLE_ADMIN"/>
+        
+       
+       <!-- PAGE RESTRICTIONS I Invoice Module -->
+        <sec:intercept-url pattern="/faces/poList.xhtml" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/faces/poView.xhtml" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/faces/po.xhtml" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/faces/acceptanceList.xhtml" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/faces/acceptanceView.xhtml" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/faces/acceptance.xhtml" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/faces/invoiceList.xhtml" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/faces/invoiceView.xhtml" access="ROLE_USER"/>
+        <sec:intercept-url pattern="/faces/paymentList.xhtml" access="ROLE_USER"/>
+       
+       <!-- PAGE RESTRICTIONS I BUY Module -->
+        <sec:intercept-url pattern="/faces/poListSupplier.xhtml" access="ROLE_BUY"/>
+        <sec:intercept-url pattern="/faces/poSupplierView.xhtml" access="ROLE_BUY"/>
+        <sec:intercept-url pattern="/faces/poSupplier.xhtml" access="ROLE_BUY"/>
+        <sec:intercept-url pattern="/faces/acceptanceListSupplier.xhtml" access="ROLE_BUY"/>
+        <sec:intercept-url pattern="/faces/acceptanceSupplierView.xhtml" access="ROLE_BUY"/>
+        <sec:intercept-url pattern="/faces/acceptanceSupplier.xhtml" access="ROLE_BUY"/>
+        <sec:intercept-url pattern="/faces/invoiceListSupplier.xhtml" access="ROLE_BUY"/>
+        <sec:intercept-url pattern="/faces/paymentListSupplier.xhtml" access="ROLE_BUY"/>
+        
+      <!-- PAGE RESTRICTIONS OME Module -->
+        <sec:intercept-url pattern="/faces/budget.xhtml" access="ROLE_OME"/>
+        <sec:intercept-url pattern="/faces/budgetDetailsList.xhtml" access="ROLE_OME"/>
+        <sec:intercept-url pattern="/faces/budgetExpensesList.xhtml" access="ROLE_OME"/>
+        <sec:intercept-url pattern="/faces/budgetList.xhtml" access="ROLE_OME"/>
+        <sec:intercept-url pattern="/faces/budgetPaymentList.xhtml" access="ROLE_OME"/>
+        <sec:intercept-url pattern="/faces/budgetView.xhtml" access="ROLE_OME"/>
+        
+        <!-- PAGE RESTRICTIONS WTR Module -->
+        <sec:intercept-url pattern="/faces/WTR.xhtml" access="ROLE_WTR"/>
+        <sec:intercept-url pattern="/faces/WTRList.xhtml" access="ROLE_WTR"/>
+        <sec:intercept-url pattern="/faces/MyWTRList.xhtml" access="ROLE_WTR"/>
+      
+        
+
+        <sec:logout invalidate-session="true"  logout-success-url="/faces/index.xhtml"/>
+        <sec:form-login default-target-url="/faces/redirect.xhtml" login-page="/faces/index.xhtml" authentication-failure-url="/faces/index.xhtml?error=1" /> 
+    </sec:http>
+	
+	
+
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider user-service-ref="userDetailsService">
+			<sec:password-encoder hash="md5" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+</beans>

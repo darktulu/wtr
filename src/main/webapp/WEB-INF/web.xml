@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+		
+		<context-param>
+		    <param-name>javax.faces.PROJECT_STAGE</param-name>
+		    <param-value>Development</param-value>
+		  </context-param>
+		   <context-param>
+		    <param-name>org.richfaces.enableControlSkinning</param-name>
+		    <param-value>false</param-value>
+		</context-param>
+		<context-param>
+		    <param-name>org.richfaces.enableControlSkinningClasses</param-name>
+		    <param-value>false</param-value>
+		</context-param>
+		
+		<context-param>
+		    <param-name>org.primefaces.extensions.DELIVER_UNCOMPRESSED_RESOURCES</param-name>
+		    <param-value>false</param-value>
+		</context-param>
+		
+		<context-param>
+		    <param-name>org.primefaces.extensions.WRAP_PRIME_FACES_RESOURCES</param-name>
+		    <param-value>true</param-value>
+		</context-param>
+		
+		 <context-param>
+		    <param-name>primefaces.THEME</param-name>
+		    <param-value>bootstrap</param-value>
+		  </context-param>
+     
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+  
+  
+  
+  <!-- START MODIF -->
+
+  
+	<filter>
+		<filter-name>OpenEntityManagerInViewFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenEntityManagerInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- END MODIF -->
+  
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:/META-INF/spring/applicationContext.xml  ,
+    classpath*:/META-INF/spring/applicationContext-data.xml,
+    classpath*:/META-INF/spring/applicationContext-security.xml
+    </param-value>
+  </context-param>
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>faces/index.xhtml</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/faces/accessDenied.xhtml</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/faces/accessDenied.xhtml</location>
+  </error-page>
+</web-app>

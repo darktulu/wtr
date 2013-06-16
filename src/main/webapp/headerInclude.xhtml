@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <div id="swap">
+        <div id="header_box">
+            <div style="padding-right: 5px; padding-left: 3px; padding-top: 3px; float: right;">
+
+                <a href="j_spring_security_logout"  class="logout-right1"/>
+            </div> 
+            <div style="padding-top: 3px; float: right; display: block; padding-right: 3px; font: 11px Helvetica, Arial, sans-serif;">
+                <h:panelGrid>
+                    <h:outputText value="Welcome, #{userController.user.firstname} #{userController.user.lastname}"/>
+                    <script type="text/javascript">
+<!--
+var currentTime = new Date()
+var hours = currentTime.getHours()
+var minutes = currentTime.getMinutes()
+document.write(currentTime.toLocaleDateString() + " " + hours + ":" + minutes)
+
+//-->
+</script>
+                </h:panelGrid>
+            </div>
+
+
+            <div style="width:140px; height: 20px; float: right; margin-right: 20px; background: url(../images/toto.png)   no-repeat; ">
+
+<!--                <table style="margin: auto;">
+                    <tbody>
+                        <tr> 
+                            <td width="4px"/>
+                            <td><a><div id="look-"/></a></td>
+                            <td width="4px"/>
+                            <td><a><div id="mail-"/></a></td>
+                            <td width="4px"/>
+                            <td><a><div id="home-"/></a></td>
+                            <td width="4px"/>
+                            <td><a><div id="help-"/></a></td>
+                        </tr>
+                    </tbody>
+                </table>-->
+
+
+            </div>
+
+
+            <div style="margin-left:120px; margin-top:0px;" ><img src="./images/logo-login.png" style="width:75px; float: left;"/>
+            </div>
+        </div>
+    </div>
+    <div style="background:#FFF; padding-top:70px;background-repeat: no-repeat; background-position-x:500px;   background-image: url(../images/orangeheader.png)"  id="myHR"></div>
+    </html>

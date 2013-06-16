@@ -1,0 +1,19 @@
+.openCl{
+    background-color: #ffffff!important;
+
+}
+.approuvedCl{
+    background-color: #ccffcc!important;
+}
+.closeCl{
+    background-color: #dedee0!important;
+}
+.submittedCl{
+    background-color: #99ffff!important;
+}
+.pendingCl{
+    background-color: #fffea4!important;
+}
+.rejectedCl{
+    background-color: lightpink !important;
+}

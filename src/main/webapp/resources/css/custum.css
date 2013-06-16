@@ -1,0 +1,146 @@
+body {
+	background-color: rgba(0, 0, 0, .05);
+}
+
+#support {
+	 background: #ffffff; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1); -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1); box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1); margin-left : 2px;
+}
+
+.content {
+	background-color: white;
+	padding: 50px 10px;
+	width: 950px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	-webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1);
+	-moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1);
+	box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0, 0, 0, .1);
+}
+
+#look{
+    background: url(../images/google.png) -216px -36px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+}
+
+#look:hover{
+    background: url(../images/googleco.png)-216px -36px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+
+}
+
+#mail{
+    background: url(../images/google.png) -72px -108px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+}
+
+#mail:hover{
+    background: url(../images/googleco.png) -72px -108px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+
+
+}
+
+
+#home{
+    background: url(../images/google.png) -126px -90px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+}
+
+#home:hover{
+    background: url(../images/googleco.png) -126px -90px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+
+}
+
+#help{
+    background: url(../images/google.png) -198px -90px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+}
+
+#help:hover{
+    background: url(../images/googleco.png) -198px -90px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+
+}
+
+
+.datatablehead{
+
+
+    font:   11px Helvetica, Arial, sans-serif;
+   
+
+
+}
+
+.datatablehead td{
+	margin: auto; 
+	width: 100%;
+    text-align : center;
+    background:rgb(240, 240, 240);
+    width : 225px;
+    height: 25px;
+    border: solid 1px #c8c8c8;
+
+}
+
+
+.red{
+	color:red;
+}
+
+.blue{
+	color:blue;
+}
+.green{
+	color:green;
+}
+
+.ui-selectonemenu-label{
+	font-size:13px;
+}
+
+.ui-panelmenu .ui-panelmenu-header a {
+  font-size:12px;
+  padding:0 0 0 30px;
+}
+
+
+.panel{
+	background-color: #CCC;
+	margin:20px 3px 3px;
+	border-bottom-left-radius:4px;
+	border-bottom-right-radius:4px;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+	border:none; 
+	padding:20px 10px 10px; 
+	background : #ffffff;
+}
+
+

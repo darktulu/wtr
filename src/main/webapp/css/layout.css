@@ -1,0 +1,378 @@
+/* 
+    Document   : layout
+    Created on : 16 oct. 2011, 12:02:21
+    Author     : Simo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+* {
+    margin:0;
+    padding:0;
+}
+
+html {
+    /*background-image: url(../images/bg_gradient.png);*/
+    /*background-repeat: repeat-x;*/
+}
+
+.s{
+    width: 250px;
+}
+
+body {
+    font-family:sans-serif;
+    font-size:12px;
+    color: #333;
+    background: #fff8e8 url(../images/bg2.jpg) top center repeat-x;
+}
+
+.panelGroup:hover
+{
+    cursor: pointer;
+    color: #555 !important;
+}
+
+.panelGroup.selected
+{
+color: #555;
+}
+
+a:link {text-decoration: none; color: #000;}
+a:visited {text-decoration: none; color: #000;}
+a:active {text-decoration: none; color: #000;}
+a:hover {text-decoration: none; color: #000;}
+
+.box8{
+    border: 7px solid #FFF ;
+    -webkit-box-shadow:  0px 0px 30px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
+    background: #fbfbfb;
+    min-height: 200px;
+}
+
+
+a.logo{
+    background: url(../images/smalllogoreflect.png) bottom left no-repeat;
+    width: 96px;
+    height: 83px;
+    padding-top: 5px;
+    display: block;
+}
+.projet-right{
+    background: url(../images/navbar.png) 0 -48px no-repeat;
+    width: 139px;
+    height: 48px;
+    display: block;
+    float: right;
+}
+
+.projet-right:hover{
+    background: url(../images/navbar.png) top left no-repeat;
+    width: 139px;
+    height: 48px;
+    display: block;
+    float: right;
+}
+.facture-right{
+    background: url(../images/navbar.png) -139px -48px no-repeat;
+    width: 139px;
+    height: 48px;
+    display: block;
+    float: right;
+}
+img{
+    border: 0;
+}
+.facture-right:hover{
+    background: url(../images/navbar.png) -139px 0 no-repeat;
+    width: 139px;
+    height: 48px;
+    display: block;
+    float: right;
+}
+.admin-right{
+    background: url(../images/navbar.png) -279px -48px no-repeat;
+    width: 185px;
+    height: 48px;
+    display: block;
+    float: right;
+}
+
+.admin-right:hover{
+    background: url(../images/navbar.png) -279px 0 no-repeat;
+    width: 185px;
+    height: 48px;
+    display: block;
+    float: right;
+}
+
+.logout-right{
+    background: url(../images/navbar.png) -464px -48px no-repeat;
+    width: 167px;
+    height: 48px;
+    display: block;
+    float: right;
+}
+
+.logout-right:hover{
+    background: url(../images/navbar.png) -464px 0 no-repeat;
+    width: 167px;
+    height: 48px;
+    display: block;
+    float: right;
+}
+
+#container
+{
+    margin: 0 auto;
+    width: auto;
+}
+
+
+.logout-right1{
+    background: url(../images/icon_logout.gif) no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+    margin-top: 4px;
+
+}
+
+
+.stable tr td{
+                vertical-align: middle;
+            }
+
+#header
+{
+    background:#ccc;
+    padding: 20px;
+}
+
+#header h1 { margin: 0; }
+
+#navigation
+{
+    float: left;
+    width: 100%;
+    background:#333;
+}
+
+#navigation ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#navigation ul li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+#navigation li a
+{
+    display: block;
+    float: left;
+    padding: 5px 10px;
+    color:#fff;
+    text-decoration: none;
+    border-right: 1px solid#fff;
+}
+
+#navigation li a:hover { background:#383; }
+
+#content
+{
+    clear: left;
+    padding: 20px;
+}
+
+#content h2
+{
+    color:#000;
+    font-size: 160%;
+    margin: 0 0 .5em;
+}
+
+#footer
+{
+    background:#ccc;
+    text-align: center;
+    padding: 20px;
+    height: 1%;
+}
+
+
+button.boxy {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 20px 30px;
+    background: -moz-linear-gradient(
+        top,
+        #fae19b 0%,
+        #ff8c00);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(#fae19b),
+        to(#ff8c00));
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 0px solid #ffffff;
+    -moz-box-shadow:
+        2px 2px 2px rgba(000,000,000,0.3),
+        inset 0px 0px 1px rgba(252,144,003,1);
+    -webkit-box-shadow:
+        2px 2px 2px rgba(000,000,000,0.3),
+        inset 0px 0px 1px rgba(252,144,003,1);
+    text-shadow:
+        -1px -1px 1px rgba(193,098,002,1),
+        0px 0px 0px rgba(255,255,255,0);
+}
+
+button.boxy:hover{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 20px 30px;
+    background: -moz-linear-gradient(
+        top,
+        #fff4d6 0%,
+        #ff8f05);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(#fff4d6),
+        to(#ff8f05));
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 0px solid #ffffff;
+    -moz-box-shadow:
+        2px 2px 2px rgba(000,000,000,0.3),
+        inset 0px 0px 1px rgba(252,144,003,1);
+    -webkit-box-shadow:
+        2px 2px 2px rgba(000,000,000,0.3),
+        inset 0px 0px 1px rgba(252,144,003,1);
+    text-shadow:
+        -1px -1px 1px rgba(193,098,002,1),
+        0px 0px 0px rgba(255,255,255,0);
+
+}
+button.boxy:active {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    margin-top: 2px;
+    margin-left: 2px;
+    padding: 20px 30px;
+    background: -moz-linear-gradient(
+        top,
+        #fff4d6 0%,
+        #ff8f05);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(#fff4d6),
+        to(#ff8f05));
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 0px solid #ffffff;
+    -moz-box-shadow:
+        1px 1px 1px rgba(000,000,000,0.3),
+        inset 0px 0px 1px rgba(252,144,003,1);
+    -webkit-box-shadow:
+        1px 1px 1px rgba(000,000,000,0.3),
+        inset 0px 0px 1px rgba(252,144,003,1);
+    text-shadow:
+        -1px -1px 1px rgba(193,098,002,1),
+        0px 0px 0px rgba(255,255,255,0);
+}
+.required {
+    background-image: url(../images/required.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+    padding-right: 10px;
+    white-space: nowrap;
+    
+    }
+    
+
+#look{
+    background: url(../images/google.png) -216px -36px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+}
+
+#look:hover{
+    background: url(../images/googleco.png)-216px -36px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+
+}
+
+#mail{
+    background: url(../images/google.png) -72px -108px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+}
+
+#mail:hover{
+    background: url(../images/googleco.png) -72px -108px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+
+
+}
+
+
+#home{
+    background: url(../images/google.png) -126px -90px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+}
+
+#home:hover{
+    background: url(../images/googleco.png) -126px -90px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+
+}
+
+#help{
+    background: url(../images/google.png) -198px -90px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+}
+
+#help:hover{
+    background: url(../images/googleco.png) -198px -90px no-repeat;
+    width: 18px;
+    height: 18px;
+    display: block;
+
+
+}
+
