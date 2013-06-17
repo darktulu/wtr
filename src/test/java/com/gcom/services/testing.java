@@ -24,9 +24,6 @@ public class testing {
     @Test 
     public void test() throws Exception {
     	
-        EGeneralDataVO e = new EGeneralDataVO();
-        e = eGeneralDataService.findById("o.gamrane");
-    	
-    	System.out.println(e.getEmail()+" "+e.getName()+" "+e.getSurname()+" "+e.getIdPhoto());
+            // NO tests are implemented for now 
    }
 }
