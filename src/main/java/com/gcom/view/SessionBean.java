@@ -1,79 +1,71 @@
 package com.gcom.view;
 
-import java.io.Serializable;
-import java.util.Calendar;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-
+import com.gcom.service.metier.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.gcom.service.metier.UserService;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+import java.util.Calendar;
 
-@ManagedBean(name="sessionBean")
+@ManagedBean(name = "sessionBean")
 @SessionScoped
 public class SessionBean implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	static Log log = LogFactory.getLog(SessionBean.class.getName());
-	
-	private String username;
-	private boolean isHR = false;
-	private boolean isPM = false;
+    private static final long serialVersionUID = 1L;
+    static Log log = LogFactory.getLog(SessionBean.class.getName());
 
+    @ManagedProperty("#{userService}")
+    private UserService userService;
 
-	@ManagedProperty("#{userService}")
-	private UserService userService;
-	
-	public String getUsername() {
-		username = SecurityContextHolder.getContext().getAuthentication().getName();
-		return username;
-	}
+    private String username;
+    private boolean isHR = false;
+    private boolean isPM = false;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
 
-	public String logDate() {
-		Calendar rightNow = Calendar.getInstance();
-		rightNow.toString();
-		return " " + rightNow.getTime();
-	}
+    public String getUsername() {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return username;
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
+    public String logDate() {
+        Calendar rightNow = Calendar.getInstance();
+        rightNow.toString();
+        return " " + rightNow.getTime();
+    }
 
-	public UserService getUserService() {
-		return userService;
-	}
+    public UserService getUserService() {
+        return userService;
+    }
 
-	public boolean isHR() {
-		isHR = userService.isHR(SecurityContextHolder.getContext().getAuthentication().getName());
-		return isHR;
-	}
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
-	public void setHR(boolean isHR) {
-		this.isHR = isHR;
-	}
+    public boolean isHR() {
+        isHR = userService.isHR(SecurityContextHolder.getContext().getAuthentication().getName());
+        return isHR;
+    }
 
-	public boolean isPM() {
-		isPM = userService.isPM(SecurityContextHolder.getContext().getAuthentication().getName());
-		return isPM;
-	}
+    public void setHR(boolean isHR) {
+        this.isHR = isHR;
+    }
 
-	public void setPM(boolean isPM) {
-		this.isPM = isPM;
-	}
+    public boolean isPM() {
+        isPM = userService.isPM(SecurityContextHolder.getContext().getAuthentication().getName());
+        return isPM;
+    }
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	
-	
+    public void setPM(boolean isPM) {
+        this.isPM = isPM;
+    }
 }

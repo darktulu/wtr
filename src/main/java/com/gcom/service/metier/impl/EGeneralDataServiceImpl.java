@@ -14,25 +14,19 @@ import com.gcom.view.vo.EGeneralDataVO;
 
 @Service("eGeneralDataService")
 public class EGeneralDataServiceImpl implements EGeneralDataService {
-
 	@Inject
 	public EGeneralDataRepos eGeneralDataRepos;
-	
 	@Inject
     private DozerBeanMapper mapper;
 	
 	@Override
 	@Transactional(readOnly = true)
 	public EGeneralDataVO findById(String username) throws ProfileNotExistException{
-		
 		EGeneralData employee = eGeneralDataRepos.findOne(username);
-		
-		if (employee == null) throw new ProfileNotExistException();
+		if (employee == null) {
+            throw new ProfileNotExistException();
+        }
 		
 		return mapper.map(employee, EGeneralDataVO.class);
-	
 	}
-
-
-
 }

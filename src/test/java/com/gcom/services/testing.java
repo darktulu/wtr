@@ -12,20 +12,15 @@ import com.gcom.service.metier.EGeneralDataService;
 import com.gcom.service.metier.UserService;
 import com.gcom.view.vo.EGeneralDataVO;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 	"classpath:META-INF/spring/applicationContext-data.xml",
 	"classpath:META-INF/spring/applicationContext-security.xml",
 	"classpath:META-INF/spring/applicationContext.xml" })
-
 public class testing {
-
 	@Inject
     private EGeneralDataService eGeneralDataService;
-	
-	
-	
+
     @Test 
     public void test() throws Exception {
     	
@@ -33,8 +28,5 @@ public class testing {
         e = eGeneralDataService.findById("o.gamrane");
     	
     	System.out.println(e.getEmail()+" "+e.getName()+" "+e.getSurname()+" "+e.getIdPhoto());
-        
-    	
    }
-    
 }

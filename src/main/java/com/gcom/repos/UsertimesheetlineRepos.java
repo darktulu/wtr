@@ -1,12 +1,7 @@
 package com.gcom.repos;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import com.gcom.beans.Usertimesheetline;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-
-@Repository("usertimesheetlineRepos")
-public interface UsertimesheetlineRepos extends JpaRepository<Usertimesheetline,Integer> {
-
+public interface UsertimesheetlineRepos extends JpaRepository<Usertimesheetline, Integer> {
 }
