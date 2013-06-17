@@ -11,8 +11,6 @@ import com.gcom.beans.Lob;
 
 @Repository("lobRepos")
 public interface LobRepos  extends JpaRepository<Lob, Integer> {
-	
 	@Query("from Lob where manager_idmanager=:manager")
-	public List<Lob> findByManager(@Param("manager") String manager);
-
+	List<Lob> findByManager(@Param("manager") String manager);
 }
