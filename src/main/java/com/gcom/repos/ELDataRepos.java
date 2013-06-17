@@ -4,12 +4,10 @@ import com.gcom.beans.ELData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
 
-@Repository
 public interface ELDataRepos extends JpaRepository<ELData, Integer> {
     @Query("From ELData d where d.resurceId=:username")
     List<ELData> findByUsername(@Param("username") String paramString);
