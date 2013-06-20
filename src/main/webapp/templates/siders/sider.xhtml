@@ -10,25 +10,130 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	
 	<h:form>	
+     
+     <ul class="nav nav-list">
 
+                    <li class="active">
+						<a href="calendar.html">
+							<i class="icon-calendar"></i>
+							<span>Current TimeSheet</span>
+						</a>
+					</li>
+
+					<li>
+						<a href="tables.html">
+							<i class="icon-list"></i>
+							<span>History TimeSheets</span>
+						</a>
+					</li>
+
+                    
+                    <li>
+						<a href="tables.html" class="dropdown-toggle">
+							<i class="icon-group"></i>
+							<span>My Team</span>
+							<b class="arrow icon-angle-down"></b>
+						</a>
+		                   
+		                    <ul class="submenu">
+									<li>
+										<a href="pricing.html">
+											<i class="icon-double-angle-right"></i>
+											Current TimeSheet
+										</a>
+									</li>
+		
+									<li>
+										<a href="invoice.html">
+											<i class="icon-double-angle-right"></i>
+											History TimeSheets
+										</a>
+									</li>
+		
+		
+								</ul>
+					
+                       </li>
+                       
+                       
+                       
+                       <li>
+						<a href="tables.html" class="dropdown-toggle">
+							<i class="icon-briefcase"></i>
+							<span>My Employees</span>
+							<b class="arrow icon-angle-down"></b>
+						</a>
+		                   
+		                    <ul class="submenu">
+		                    
+									
+									<li>
+										<a href="pricing.html">
+											<i class="icon-double-angle-right"></i>
+											Current TimeSheet
+										</a>
+									</li>
+		
+									<li>
+										<a href="invoice.html">
+											<i class="icon-double-angle-right"></i>
+											History TimeSheets
+										</a>
+									</li>
+		
+		
+								</ul>
+					
+                       </li>
+                       
+                       
+                       <li>
+						<a href="tables.html" class="dropdown-toggle">
+							<i class="icon-cogs"></i>
+							<span>Administration</span>
+							<b class="arrow icon-angle-down"></b>
+						</a>
+		                   
+		                    <ul class="submenu">
+		                    
+									
+									<li>
+										<a href="pricing.html">
+											<i class="icon-double-angle-right"></i>
+											 TimeSheets
+										</a>
+									</li>
+		
+									<li>
+										<a href="invoice.html">
+											<i class="icon-double-angle-right"></i>
+											Days Off
+										</a>
+									</li>
+									
+									<li>
+										<a href="invoice.html">
+											<i class="icon-double-angle-right"></i>
+											Assignment
+										</a>
+									</li>
+		
+		
+								</ul>
+					
+                       </li>
+                       
+                       
+
+
+					
+				</ul><!--/.nav-list-->
 	
-			<p:panelMenu style="width:100%" >  
-		        <p:submenu label="My Timesheets">  
-		            <p:menuitem value="Current Timesheets"   icon="ui-icon-contact"  style="font-size:10px; "  url="executiveCharts.xhtml"/>    
-		            <p:menuitem value="History Timesheets"   icon="ui-icon-contact"  style="font-size:10px; " url="executiveCharts.xhtml"/>    
-		        </p:submenu>  
-		    </p:panelMenu> 
+			
 	
 	</h:form>
-		
-		<!-- <script type="text/javascript" src="resources/js/accordion/jquery-1.4.2.min.js" charset="utf-8"></script> -->
-	<script type="text/javascript" src="resources/js/accordion/jquery.accordion.2.0.js" charset="utf-8"></script>
-	<script type="text/javascript">
-            $('#pmmenu').accordion({
-                canToggle: true
-            });
-            $(".loading").removeClass("loading");
-	</script>
+
+
 	
 
 </ui:composition>
