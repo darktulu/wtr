@@ -13,8 +13,8 @@
      
      <ul class="nav nav-list">
 
-                    <li class="active">
-						<a href="calendar.html">
+                    <li class="#{view.viewId=='/MyWTRList.xhtml'?'active':''}">
+						<a href="MyWTRList.xhtml">
 							<i class="icon-calendar"></i>
 							<span>Current TimeSheet</span>
 						</a>
@@ -87,7 +87,7 @@
                        </li>
                        
                        
-                       <li>
+                       <li class="#{view.viewId=='/AssignmentHR.xhtml'?'active':''}">
 						<a href="tables.html" class="dropdown-toggle">
 							<i class="icon-cogs"></i>
 							<span>Administration</span>
@@ -111,8 +111,8 @@
 										</a>
 									</li>
 									
-									<li>
-										<a href="invoice.html">
+									<li class="#{view.viewId=='/AssignmentHR.xhtml'?'active':''}">
+										<a href="AssignmentHR.xhtml">
 											<i class="icon-double-angle-right"></i>
 											Assignment
 										</a>
