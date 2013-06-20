@@ -56,6 +56,27 @@
             <value>./META-INF/config/dto-bean-mappings.xml</value>			   
         </list>
 	    </property>
+	    
+	 <property name="customConvertersWithId"> 
+	    
+	      <map>  
+	      
+	       <entry key="dateToDateTimeConverterId" value-ref="dateToDateTimeConverter" />
+	       
+	       </map> 
+	    
+	    </property>
+	    
+	   
+
+
 	</bean>
+	
+
+
+
+	
+	
+	
 	
 </beans>

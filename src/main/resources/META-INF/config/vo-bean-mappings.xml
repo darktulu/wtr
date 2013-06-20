@@ -24,6 +24,79 @@
   			<b>email</b>
   		</field>
 	</mapping>
+	
+	<mapping>
+		<class-a>com.gcom.beans.Task</class-a>
+		<class-b>com.gcom.view.vo.TaskVO</class-b>
+		<field>
+			<a>idtask</a>
+			<b>idtask</b>
+		</field>
+		<field>
+		  	<a>name</a>
+  			<b>name</b>
+  		</field>
+  				
+	</mapping>
+	
+	<mapping>
+		<class-a>com.gcom.beans.Project</class-a>
+		<class-b>com.gcom.view.vo.ProjectVO</class-b>
+		<field>
+			<a>idproject</a>
+			<b>idproject</b>
+		</field>
+		<field>
+		  	<a>name</a>
+  			<b>name</b>
+  		</field>
+  		
+  		<field>
+		  	<a>manager_idmanager</a>
+  			<b>manager</b>
+  		</field>
+  		
+  		
+  		<field>
+		  	<a>tasks</a>
+  			<b>listTaskVO</b>
+  		</field>
+  				
+	</mapping>
+	
+	
+	<mapping>
+		<class-a>com.gcom.beans.Assignment</class-a>
+		<class-b>com.gcom.view.vo.AssignmentVO</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		
+  		
+  		<field custom-converter-id="dateToDateTimeConverterId">
+		  	<a>startDay</a>
+  			<b>startDay</b>
+  		</field>
+  		
+  		<field custom-converter-id="dateToDateTimeConverterId">
+		  	<a>endDay</a>
+  			<b>endDay</b>
+  		</field>
+  		
+  		<field>
+		  	<a>project</a>
+  			<b>projectVO</b>
+  		</field>
+  		
+  		
+	</mapping>
+	
+	
+	
+	
+	
+	
 
 	
 
