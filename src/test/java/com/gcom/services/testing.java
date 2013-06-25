@@ -41,13 +41,7 @@ public class testing {
     public void test() throws Exception {
     	
             
+    	System.out.println(eGeneralDataService.loadActiveEmployees().size());
             
-            
-            for(AssignmentVO assVO : assignmentService.loadAssignmentHistory("o.gamrane")){
-            	
-            	
-            	System.out.println("Project Name"+assVO.getProjectVO().getName()+" List Tasks "+assVO.getProjectVO().getListTaskVO().size());
-            	
-            }
    }
 }
