@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/templates/blank.xhtml">  
+
+	<ui:define name="title">
+		WTR
+    </ui:define>
+
+	<ui:define name="header">
+		<ui:include src="/templates/headers/header.xhtml" />
+	</ui:define>
+	
+	<ui:define name="sider">
+		<ui:include src="/templates/siders/sider.xhtml" />
+	</ui:define>
+	
+	<ui:define name="navigator">
+		<ui:include src="/templates/theme/navigator.xhtml" />
+	</ui:define>
+	
+	
+   <ui:define name="body">
+            
+             <h:form>
+             <div class="row-fluid">
+                       <div class="span12 infobox-container">
+								<div class="infobox infobox-green  ">
+									<div class="infobox-icon">
+										<i class="icon-group"></i>
+									</div>
+
+									<div class="infobox-data">
+										<span class="infobox-data-number">32</span>
+										<div class="infobox-content">Total Employees</div>
+									</div>
+
+								</div>
+
+								<div class="infobox infobox-blue">
+									<div class="infobox-icon">
+										<i class=" icon-check"></i>
+									</div>
+
+									<div class="infobox-data">
+										<span class="infobox-data-number">11</span>
+										<div class="infobox-content">Total Assigned</div>
+									</div>
+
+								</div>
+
+								<div class="infobox infobox-red">
+									<div class="infobox-icon">
+										<i class=" icon-exclamation-sign"></i>
+									</div>
+
+									<div class="infobox-data">
+										<span class="infobox-data-number">8</span>
+										<div class="infobox-content">Total Remaining</div>
+									</div>
+									
+								</div>
+
+							</div>
+             
+	          
+	          </div>
+	          
+	          <div class="row-fluid">
+							<h3 class="header smaller lighter blue">List Of Active Employees</h3>
+							<div class="table-header">
+								Results for "Current Active Employees"
+							</div>
+	          
+	          <p:dataTable value="#{listEmployeesBean.listcurrentEmployees}" var="emp" id="tab" rows="20" widgetVar="tab" 
+	          paginator="true" paginatorPosition="bottom"  styleClass="table table-striped table-bordered table-hover" >
+									
+									
+									
+									<p:column style="width: 42px;">
+										<f:facet name="header">
+											<h:outputText value="Photo" />
+										</f:facet>
+										<img src="#{emp.idPhoto}"
+											style="margin: auto; width: 40px; height: 30px;" />
+									</p:column>
+
+									<p:column >
+										<f:facet name="header">
+											<h:outputText value="Name" />
+										</f:facet>
+										<h:outputText value="#{emp.name}" />
+									</p:column>
+
+									<p:column >
+										<f:facet name="header">
+											<h:outputText value="Surname " />
+										</f:facet>
+										<h:outputText value="#{emp.surname}" />
+									</p:column>
+									
+									<p:column >
+										<f:facet name="header">
+											<h:outputText value="Email" />
+										</f:facet>
+										<h:outputText value="#{emp.email}" style="color : blue;"/>
+									</p:column>
+									
+									
+									
+									<p:column style="text-align : center;" >
+										<f:facet name="header">
+											<h:outputText value="Status" />
+										</f:facet>
+										<h:outputText value="Assigned" styleClass="label label-success" />
+									</p:column>
+									
+									<p:column style="text-align : center;">
+										<f:facet name="header">
+											<h:outputText value="Actions" />
+										</f:facet>
+										<p:commandLink styleClass="btn btn-mini btn-info"><i class="icon-edit bigger-120"></i></p:commandLink>
+									</p:column>
+									
+
+
+	                </p:dataTable>
+	                
+	                </div>
+
+	        </h:form>
+	        
+
+
+
+
+	</ui:define>
+</ui:composition>
+
