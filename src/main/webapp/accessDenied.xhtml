@@ -1,65 +1,64 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich"
-       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>3GCOM &rsaquo; Administration</title>
-        <link rel='stylesheet' id='layout-css'  href='css/layout.css' type='text/css' media='all' />
-        <f:loadBundle basename="localization.labels" var="lbl"/>
-        <f:loadBundle basename="localization.messages" var="msg"/>
-        <style> 
-            .barsearch{
-                height: 20px;
-            }
-            .even-row {
-                background-color: #FCFFFE;
-                cursor: pointer;
-            }
-            .odd-row {
-                background-color: #efefef;
-                cursor: pointer;
-            }
-            .active-row{
-                background-color: #FFFDEB;
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>3GCOM &rsaquo; Administration</title>
+    <link rel='stylesheet' id='layout-css' href='css/layout.css' type='text/css' media='all'/>
+    <style type="text/css">
+        .barsearch {
+            height: 20px;
+        }
 
-            }
-            .top{
-                vertical-align: top;
-            }
-            .default-pointer{
-                background: red;
-            }
-            .buttonImg{
-                margin: 3px 8px 0px 8px; 
-                cursor:pointer;
-            }
-        </style>
-    </h:head>
-    <h:body>
-        <h:form>
-            <div id="container">
-              <ui:include src="headerInclude.xhtml"/>
-                <div style="height:110px"/> <!-- Space to strat the box--> 
-                 
-                <br/><br/><br/><br/><br/><br/><br/><br/>
-              <div   >
-                  <img src="images/bg.png" align="right" width="540"  >
-                      <br/><br/><br/><br/><br/><br/><br/><br/>
-                    
-                  </img>
-                
-                </div>
-                  <center><h1>#{lbl.accessDenied}</h1></center>
+        .even-row {
+            background-color: #FCFFFE;
+            cursor: pointer;
+        }
+
+        .odd-row {
+            background-color: #efefef;
+            cursor: pointer;
+        }
+
+        .active-row {
+            background-color: #FFFDEB;
+
+        }
+
+        .top {
+            vertical-align: top;
+        }
+
+        .default-pointer {
+            background: red;
+        }
+
+        .buttonImg {
+            margin: 3px 8px 0px 8px;
+            cursor: pointer;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:form>
+        <div id="container">
+            <ui:include src="headerInclude.xhtml"/>
+
+            <div style="height:110px"></div>
+            <!-- Space to strat the box-->
+
+            <br/><br/><br/><br/><br/><br/><br/><br/>
+
+            <div>
+                <img src="images/bg.png" align="right" width="540" alt="3Gcom">
+                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                </img>
             </div>
-  
-        </h:form>
-
-        
-
-    </h:body>
+            <div style="text-align: center;"><h1>#{lbl.accessDenied}</h1></div>
+        </div>
+    </h:form>
+</h:body>
 </html>
 
