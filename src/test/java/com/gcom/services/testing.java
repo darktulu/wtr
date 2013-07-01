@@ -1,32 +1,32 @@
 package com.gcom.services;
 
-import javax.inject.Inject;
-
+import com.gcom.service.metier.AssignmentService;
+import com.gcom.service.metier.EGeneralDataService;
+import org.dozer.DozerBeanMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.gcom.repos.AuthoritiesRepos;
-import com.gcom.service.metier.EGeneralDataService;
-import com.gcom.service.metier.UserService;
-import com.gcom.view.vo.EGeneralDataVO;
+import javax.inject.Inject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:META-INF/spring/applicationContext-data.xml",
-	"classpath:META-INF/spring/applicationContext-security.xml",
-	"classpath:META-INF/spring/applicationContext.xml" })
+        "classpath:META-INF/spring/applicationContext-data.xml",
+        "classpath:META-INF/spring/applicationContext-security.xml",
+        "classpath:META-INF/spring/applicationContext.xml"})
 public class testing {
-	@Inject
+    @Inject
     private EGeneralDataService eGeneralDataService;
+    @Inject
+    private DozerBeanMapper mapper;
+    @Inject
+    private AssignmentService assignmentService;
 
-    @Test 
+    @Test
+    @Transactional
     public void test() throws Exception {
-    	
-        EGeneralDataVO e = new EGeneralDataVO();
-        e = eGeneralDataService.findById("o.gamrane");
-    	
-    	System.out.println(e.getEmail()+" "+e.getName()+" "+e.getSurname()+" "+e.getIdPhoto());
-   }
+        System.out.println(eGeneralDataService.loadActiveEmployees().size());
+    }
 }

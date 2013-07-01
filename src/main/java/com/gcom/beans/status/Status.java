@@ -6,7 +6,8 @@ public enum Status implements Serializable {
     PENDING("Pending"),
     APPROUVED("Approuved"),
     OPEND("Open"),
-    REJECTED("Rejected");
+    REJECTED("Rejected"),
+    ACTIVE("ACTIVE");
 
     private String value;
 
