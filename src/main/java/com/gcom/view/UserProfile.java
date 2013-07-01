@@ -3,20 +3,23 @@ package com.gcom.view;
 import com.gcom.service.exceptions.ProfileNotExistException;
 import com.gcom.service.metier.EGeneralDataService;
 import com.gcom.view.vo.EGeneralDataVO;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
 
-@ManagedBean
-@RequestScoped
+@Component
+@Scope("request")
 public class UserProfile {
-    @ManagedProperty("#{sessionBean}")
-    public SessionBean sessionBean;
-    @ManagedProperty("#{eGeneralDataService}")
-    public EGeneralDataService eGeneralDataService;
+    @Inject
+    private transient SessionBean sessionBean;
+    @Inject
+    private transient EGeneralDataService eGeneralDataService;
 
-    public EGeneralDataVO profile = new EGeneralDataVO();
+    private EGeneralDataVO profile = new EGeneralDataVO();
 
     public SessionBean getSessionBean() {
         return sessionBean;
