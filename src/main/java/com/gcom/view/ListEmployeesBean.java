@@ -2,20 +2,23 @@ package com.gcom.view;
 
 import com.gcom.service.metier.EGeneralDataService;
 import com.gcom.view.vo.EGeneralDataVO;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.List;
 
-@ManagedBean
-@ViewScoped
+@Component
+@Scope("view")
 public class ListEmployeesBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @ManagedProperty("#{eGeneralDataService}")
-    private EGeneralDataService eGeneralDataService;
+    @Inject
+    private transient EGeneralDataService eGeneralDataService;
 
     private List<EGeneralDataVO> listcurrentEmployees;
 

@@ -3,22 +3,24 @@ package com.gcom.view;
 import com.gcom.service.metier.UserService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.Calendar;
 
-@ManagedBean(name = "sessionBean")
-@SessionScoped
+@Component
+@Scope("session")
 public class SessionBean implements Serializable {
     private static final long serialVersionUID = 1L;
     static Log log = LogFactory.getLog(SessionBean.class.getName());
 
-    @ManagedProperty("#{userService}")
-    private UserService userService;
+    @Inject
+    private transient UserService userService;
 
     private String username;
     private boolean isHR = false;

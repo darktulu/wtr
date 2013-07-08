@@ -1,27 +1,30 @@
 <?xml version='1.0' encoding='UTF-8'?>
-
-<!-- =========== FULL CONFIGURATION FILE ================================== -->
-
 <faces-config version="2.0"
-              xmlns="http://java.sun.com/xml/ns/javaee" 
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
-<application>
-<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-</application>
+    <application>
+        <resource-bundle>
+            <base-name>localization.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>localization.labels</base-name>
+            <var>lbl</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>localization.constantesGestion</base-name>
+            <var>ctg</var>
+        </resource-bundle>
 
-<navigation-rule>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+    </application>
+
+    <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>ok</from-outcome>
             <to-view-id>/accueil.xhtml</to-view-id>
         </navigation-case>
-        
     </navigation-rule>
-    
-
-    
-     
-   
-   
 </faces-config>
