@@ -17,7 +17,7 @@
 		<spring-security.version>3.1.0.RELEASE</spring-security.version>
 		<!--  apache.myfaces>2.1.6</apache.myfaces-->
 		<richfaces.version>4.1.0.Final</richfaces.version>
-		<hibernate.version>4.1.6.Final</hibernate.version>
+		<hibernate.version>5.4.24.Final</hibernate.version>
 	</properties>
 
 	<repositories>
